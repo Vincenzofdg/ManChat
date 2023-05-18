@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import localized from '../localized/SignUp'
 import Btn from '../component/SingUp/SignInBtn'
 import Picture from '../../assets/background.jpg'
-import { userObj } from '../localized/Roles'
+import { userObj, mockedUser } from '../localized/Roles'
 
 function SignUp() {
   const { navigate } = useNavigation();
@@ -17,6 +17,11 @@ function SignUp() {
     setUser(userObj)
     navigate('Profile')
   }
+
+  const mocking = () => {
+    setUser(mockedUser)
+    navigate('Tags')
+  }
   return (
     <View style={styles.page}>
       <View style={styles.up}>
@@ -25,7 +30,7 @@ function SignUp() {
       </View>
       <View style={styles.down}>
       <ImageBackground resizeMode='stretch' source={Picture} style={styles.img}>
-          <Btn title={str.signIn} />
+          <Btn title={str.signIn} press={mocking}/>
           <Btn title={str.newUser} press={handleNewUser} />
       </ImageBackground>
       </View>

@@ -21,6 +21,15 @@ export const userObj = {
   tags: [],
 };
 
+export const mockedUser = {
+  photo: 'https://avatars.githubusercontent.com/u/79121466?v=4',
+  fullName: 'Vincenzo Fedzuirek Di Giacomo',
+  displayName: 'vincenzofdg',
+  age: '27',
+  bio: 'The guy who are developing this project',
+  tags: [],
+};
+
 export const inputsTypes = ['fullName', 'displayName', 'age', 'bio'];
 
 export const iconTakePicture = ['camera', 'folder'];
@@ -33,16 +42,14 @@ export const cameraOptions = {
 };
 
 export const tags = [
-  'tag_01',
-  'tag_02',
-  'tag_03',
-  'tag_04',
-  'tag_05',
-  'tag_06',
-  'tag_07',
-  'tag_08',
-  'tag_09',
-  'tag_10',
-  'tag_11',
-  'tag_12',
+  'anxiety',
+  'depression',
+  'addiction',
+  'ptsd',
+  'm.h',
+  'ex-girlfriend',
+  'sexuality',
+  'family',
+  'unemployment',
+  'erection',
 ];
