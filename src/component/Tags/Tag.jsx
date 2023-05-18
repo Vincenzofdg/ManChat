@@ -6,7 +6,7 @@ export default function Tag({name}) {
   const {user, setUser} = useContext(Context)
   const [selected, setSelected] = useState(false)
 
-  const selectedCSS = selected && {backgroundColor: 'red'}
+  const selectedCSS = selected && {backgroundColor: '#20325a'}
 
   const handlePress = () => {
     if (!selected) {
