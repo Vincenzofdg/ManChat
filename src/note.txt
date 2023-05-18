@@ -1,1 +1,4 @@
 npm install react-native-localize
+
+npm install react-native-image-picker
+
