@@ -6,6 +6,7 @@ import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import localized from '../localized/SignUp'
 import Btn from '../component/SingUp/SignInBtn'
 import Picture from '../../assets/background.jpg'
+import { userObj } from '../localized/Roles'
 
 function SignUp() {
   const { navigate } = useNavigation();
@@ -13,14 +14,7 @@ function SignUp() {
   const str = localized[info.language] || localized['en'];
 
   const handleNewUser = () => {
-    const newUserObj = {
-      fullName: '', 
-      displayName: '', 
-      age: '', 
-      bio: '', 
-      tags: []
-    }
-    setUser(newUserObj)
+    setUser(userObj)
     navigate('Profile')
   }
   return (
@@ -36,7 +30,6 @@ function SignUp() {
       </ImageBackground>
       </View>
     </View>
-
   )
 }
 

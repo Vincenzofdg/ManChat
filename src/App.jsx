@@ -7,7 +7,8 @@ import Provider from './context/Provider'
 // Screens
 import SignUpScreen from './screens/SignUp';
 import ProfileScreen from './screens/Profile'
-import InterestsScreen from './screens/Interests';
+import TakePictureScreen from './screens/TakePicture';
+import TagesScreen from './screens/Tags';
 
 const Stack = createStackNavigator();
 
@@ -31,7 +32,8 @@ export default function App() {
         <Stack.Navigator screenOptions={stackSettings}>
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
-          <Stack.Screen name="Interests" component={InterestsScreen} />
+          <Stack.Screen name="TakePicture" component={TakePictureScreen} />
+          <Stack.Screen name="Tags" component={TagesScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
