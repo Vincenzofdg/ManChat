@@ -1,0 +1,15 @@
+export const minLenght = {
+  fullName: 5,
+  displayName: 3,
+  age: 1,
+  bio: 1,
+};
+
+export const maxLength = {
+  fullName: 30,
+  displayName: 12,
+  age: 2,
+  bio: 300,
+};
+
+export const inputsTypes = ['fullName', 'displayName', 'age', 'bio'];

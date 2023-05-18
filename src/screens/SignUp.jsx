@@ -1,44 +1,60 @@
 import React, {useContext} from 'react';
 import Context from '../context/Context'
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 
 import localized from '../localized/SignUp'
-import Btn from '../component/SignInBtn'
+import Btn from '../component/SingUp/SignInBtn'
+import Picture from '../../assets/background.jpg'
 
 function SignUp() {
   const { navigate } = useNavigation();
-  const { info } = useContext(Context)
+  const { info, setUser } = useContext(Context)
   const str = localized[info.language] || localized['en'];
 
-  const handleGoogle = () => navigate('Profile')
-  const handleForm = () => navigate('Profile')
+  const handleNewUser = () => {
+    const newUserObj = {
+      fullName: '', 
+      displayName: '', 
+      age: '', 
+      bio: '', 
+      tags: []
+    }
+    setUser(newUserObj)
+    navigate('Profile')
+  }
   return (
     <View style={styles.page}>
       <View style={styles.up}>
         <Text style={styles.text}>{str.app_name}</Text>
-        <Text style={styles.text}>{str.slogan}</Text>
+        <Text style={{color: 'white', fontStyle: 'italic'}}>{str.slogan}</Text>
       </View>
       <View style={styles.down}>
-        <Btn title={str.google} press={ handleGoogle } />
-        <Btn title={str.form} press={handleForm} />
+      <ImageBackground resizeMode='stretch' source={Picture} style={styles.img}>
+          <Btn title={str.signIn} />
+          <Btn title={str.newUser} press={handleNewUser} />
+      </ImageBackground>
       </View>
     </View>
+
   )
 }
 
 const styles = StyleSheet.create({
   page: {
+    backgroundColor: '#062f81',
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   up: {
     marginBottom: 50,
   },
   down: {
-    height: '20%',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    backgroundColor: '#02183C',
+    height: '45%',
+    width: '80%',
+    borderRadius: 20,
   },
   text: {
     color: 'white',
@@ -46,6 +62,15 @@ const styles = StyleSheet.create({
     fontSize: 25,
     alignSelf: 'center',
   },
+  img: {
+    height: '100%',
+    width: '100%',
+    overflow: 'hidden',
+    borderRadius: 20,
+
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 })
 
 export default SignUp;

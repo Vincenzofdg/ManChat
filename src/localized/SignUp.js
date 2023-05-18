@@ -2,13 +2,13 @@ export default localized = {
   en: {
     app_name: 'ManChat',
     slogan: 'No man is an island',
-    google: 'Google',
-    form: 'Form',
+    signIn: 'Sign In',
+    newUser: 'New User',
   },
   pt: {
     app_name: 'ManChat',
     slogan: 'Nenhum homem é uma ilha',
-    google: 'Google',
-    form: 'Form',
+    signIn: 'Entrar',
+    newUser: 'Novo Usuario',
   },
 };

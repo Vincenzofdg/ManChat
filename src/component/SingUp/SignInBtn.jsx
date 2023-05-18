@@ -11,11 +11,15 @@ export default function SignUp({ title, press }) {
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: 'gray',
-    width: 160,
+    // backgroundColor: '#364156',
+    backgroundColor: 'black',
+    opacity: 0.7,
+    width: 130,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
+    // marginBottom: 0,
+    marginTop: 15,
   },
   text: {
     color: 'white',

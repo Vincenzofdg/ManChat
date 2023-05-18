@@ -19,7 +19,7 @@ const AppTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: 'black',
+    background: '#011028',
   }
 }
 
