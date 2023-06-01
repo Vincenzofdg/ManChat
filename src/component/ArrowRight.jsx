@@ -13,7 +13,7 @@ function ArrowRight({action, isOn}) {
 
 const styles = StyleSheet.create({
   next: {
-    backgroundColor: '#02183C',
+    backgroundColor: 'black',
     width: 50,
     height: 50,
     justifyContent: 'center',

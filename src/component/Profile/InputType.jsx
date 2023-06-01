@@ -16,7 +16,7 @@ export default function InputType(props) {
         ...prev, 
         [`${type}`]: text 
       }))
-      text.length >= minLenght[type] && next(true)
+      text.length >= minLenght[type] ? next(true) : next(false)
     }
   }
 
@@ -41,7 +41,8 @@ export default function InputType(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#02183C',
+    backgroundColor: 'black',
+    opacity: 0.6,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,

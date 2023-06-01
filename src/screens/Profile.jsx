@@ -1,11 +1,14 @@
 import React, {useContext, useState, useRef, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, KeyboardAvoidingView, BackHandler } from 'react-native';
+import { ImageBackground, StyleSheet, KeyboardAvoidingView, BackHandler } from 'react-native';
 
 import Context from '../context/Context';
 import InputType from '../component/Profile/InputType';
 import ArrowRight from '../component/ArrowRight';
-import localized from '../localized/Profile'
+import localized from '../localized/Profile';
+
+import Picture from '../../assets/background.jpg'
+
 import { inputsTypes } from '../localized/Roles';
 
 function Profile() {
@@ -34,22 +37,26 @@ function Profile() {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.page} behavior='height'>
-      {
-        inputsTypes.map((input, index) => 
-          <InputType 
-            key={input + '-key'}
-            label={str[input]}  
-            type={input}
-            isVisible={click === index}
-            next={setNext}
-            reference={inputRefs}
-            i={index}
-          />
-        )
-      }
-      <ArrowRight action={handleNext} isOn={next} />
-    </KeyboardAvoidingView>
+    <>
+      <ImageBackground resizeMode='cover' source={Picture} style={styles.img} />
+      <KeyboardAvoidingView style={styles.page} behavior='height'>
+        
+        {
+          inputsTypes.map((input, index) => 
+            <InputType 
+              key={input + '-key'}
+              label={str[input]}  
+              type={input}
+              isVisible={click === index}
+              next={setNext}
+              reference={inputRefs}
+              i={index}
+            />
+          )
+        }
+        <ArrowRight action={handleNext} isOn={next} />
+      </KeyboardAvoidingView>
+    </>
   )
 }
 
@@ -58,6 +65,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     height: '100%',
     marginTop: 45,
+  },
+  img: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    opacity: 0.4,
+    
+    zIndex: 0,
   },
 })
 
