@@ -4,11 +4,11 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import Provider from './context/Provider'
 
-// Screens
+// Stack
 import SignUpScreen from './screens/SignUp';
-import ProfileScreen from './screens/Profile'
-import TakePictureScreen from './screens/TakePicture';
-import TagesScreen from './screens/Tags';
+import InfoScreen from './screens/stack/Info'
+import PictureScreen from './screens/stack/Picture';
+import TagsScreen from './screens/stack/Tags';
 
 const Stack = createStackNavigator();
 
@@ -31,9 +31,9 @@ export default function App() {
         <StatusBar barStyle="light-content" backgroundColor="black" />
         <Stack.Navigator screenOptions={stackSettings}>
           <Stack.Screen name="SignUp" component={SignUpScreen} />
-          <Stack.Screen name="Profile" component={ProfileScreen} />
-          <Stack.Screen name="TakePicture" component={TakePictureScreen} />
-          <Stack.Screen name="Tags" component={TagesScreen} />
+          <Stack.Screen name="Info" component={InfoScreen} />
+          <Stack.Screen name="Picture" component={PictureScreen} />
+          <Stack.Screen name="Tags" component={TagsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

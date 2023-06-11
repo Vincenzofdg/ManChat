@@ -3,13 +3,12 @@ import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 
-import Context from '../context/Context';
-import Icon from '../component/TakePicture/Icon'
-import { iconTakePicture as imgs, cameraOptions as options } from '../localized/Roles';
+import Context from '../../context/Context';
+import Icon from '../../component/stack/Icon'
+import { iconTakePicture as imgs, cameraOptions as options } from '../../localized/Roles';
 
-
-function TakePicture() {
-  const { user, setUser } = useContext(Context)
+function Picture() {
+  const { setUser } = useContext(Context)
   const { navigate } = useNavigation();
 
   const savePicture = (res) => {
@@ -60,4 +59,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default TakePicture;
+export default Picture;

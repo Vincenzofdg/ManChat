@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import Context from '../../context/Context';
 
-import localized from '../../localized/TakePicture'
+import localized from '../../localized/SignUp'
 import CameraIcon from '../../../assets/camera.png'
 import FolderIcon from '../../../assets/folder.png'
 

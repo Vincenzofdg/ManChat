@@ -1,17 +1,18 @@
 import React, {useContext, useState, useRef, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { ImageBackground, StyleSheet, KeyboardAvoidingView, BackHandler } from 'react-native';
+import Context from '../../context/Context';
 
-import Context from '../context/Context';
-import InputType from '../component/Profile/InputType';
-import ArrowRight from '../component/ArrowRight';
-import localized from '../localized/Profile';
 
-import Picture from '../../assets/background.jpg'
+import InputType from '../../component/stack/InputType';
+import ArrowRight from '../../component/stack/ArrowRight';
 
-import { inputsTypes } from '../localized/Roles';
+import Picture from '../../../assets/background.jpg'
 
-function Profile() {
+import { inputsTypes } from '../../localized/Roles';
+import localized from '../../localized/SignUp';
+
+function Info() {
   const { info } = useContext(Context)
   const [ click, setClick ] = useState(0)
   const [ next, setNext ] = useState(false)
@@ -28,10 +29,10 @@ function Profile() {
 
   const handleNext = () => {
     if (click + 1 < inputsTypes.length) {
-      inputRefs.current[click + 1].focus();
+      inputRefs.current[click + 1].focus(); // To focus on Next
       setClick(prev => prev + 1)
     } else if (click + 1 == inputsTypes.length) {
-      navigate('TakePicture')
+      navigate('Picture')
     }
     setNext(false)
   }
@@ -40,7 +41,6 @@ function Profile() {
     <>
       <ImageBackground resizeMode='cover' source={Picture} style={styles.img} />
       <KeyboardAvoidingView style={styles.page} behavior='height'>
-        
         {
           inputsTypes.map((input, index) => 
             <InputType 
@@ -71,9 +71,8 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     opacity: 0.4,
-    
     zIndex: 0,
   },
 })
 
-export default Profile;
+export default Info;

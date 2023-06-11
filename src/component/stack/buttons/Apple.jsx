@@ -1,10 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-export default function SignUp({ title, press }) {
+export default function Apple({ title, press }) {
   return (
     <TouchableOpacity style={styles.btn} onPress={press}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.text}>Sign in with Apple</Text>
     </TouchableOpacity>
   );
 }
@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     // backgroundColor: '#364156',
     backgroundColor: 'black',
     opacity: 0.7,
-    width: 130,
+    width: 300,
+    height: 50,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
