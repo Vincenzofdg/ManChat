@@ -1,6 +1,6 @@
-import React, {useContext, useState, useRef, useEffect} from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ImageBackground, StyleSheet, KeyboardAvoidingView, BackHandler } from 'react-native';
+import { ImageBackground, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import Context from '../../context/Context';
 
 
@@ -19,13 +19,6 @@ function Info() {
   const {navigate} = useNavigation();
   const inputRefs = useRef([]);
   const str = localized[info.language] || localized['en'];
-
-  useEffect(() => {
-    function RemoveBackHandler() {
-      BackHandler.addEventListener('hardwareBackPress', () => true);
-    }
-    RemoveBackHandler()
-  }, []);
 
   const handleNext = () => {
     if (click + 1 < inputsTypes.length) {

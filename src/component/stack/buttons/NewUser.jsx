@@ -27,16 +27,18 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: 'black',
     opacity: 0.7,
-    width: 300,
-    height: 50,
+    width: 280,
+    height: 45,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
     marginTop: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   text: {
     color: 'white',
-    fontSize: 16,
-    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: 600,
   },
 });

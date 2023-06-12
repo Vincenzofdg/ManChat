@@ -7,16 +7,9 @@ import Picture from '../../assets/background.jpg';
 
 import Btn from '../component/stack/buttons'
 
-// import { mockedUser } from '../localized/Roles'
-
 function SignUp() {
   const { info } = useContext(Context)
   const str = localized[info.language] || localized['en'];
-
-  // const mocking = () => {
-  //   setUser(mockedUser)
-  //   navigate('Tags')
-  // }
 
   return (
     <View style={styles.page}>
@@ -28,6 +21,8 @@ function SignUp() {
         </View>
         <View style={styles.down}>
             <Btn.Apple />
+            <Btn.Facebook />
+            <Btn.Google />
             <Btn.NewUser />
         </View>
       </View>

@@ -2,7 +2,9 @@ export default localized = {
   en: {
     app_name: 'ManChat',
     slogan: 'No man is an island',
-    signIn: 'Sign In',
+    apple: 'Sign in with Apple',
+    facebook: 'Login with Facebook',
+    google: 'Login with Google',
     signUp: 'Sign Up',
     fullName: 'Full name',
     displayName: 'Display name',
@@ -16,7 +18,9 @@ export default localized = {
   pt: {
     app_name: 'ManChat',
     slogan: 'Nenhum homem é uma ilha',
-    signIn: 'Entrar',
+    apple: 'Entrar com Apple',
+    facebook: 'Login com Facebook',
+    google: 'Login com Google',
     newUser: 'Cadastrar',
     fullName: 'Nome Completo',
     displayName: 'Nome de exibição',

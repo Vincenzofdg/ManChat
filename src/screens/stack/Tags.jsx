@@ -9,15 +9,12 @@ import ArrowRight from '../../component/stack/ArrowRight';
 import Tag from '../../component/stack/Tag';
 
 function SignUp() {
-  // const { navigate } = useNavigation();
+  const { navigate } = useNavigation();
   const { info, user } = useContext(Context);
   const str = localized[info.language] || localized['en'];
   const name = user.fullName.split(' ')[0];
 
-  const handlesNext = () => {
-    console.log(user)
-    // navigate('Home')
-  }
+  const handlesNext = () => navigate('HomePage');
 
   return (
     <SafeAreaView style={styles.page}>
