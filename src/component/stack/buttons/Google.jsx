@@ -3,7 +3,7 @@ import Context from '../../../context/Context';
 import { TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 
 import localized from '../../../localized/SignUp';
-import Logo from '../../../../assets/google.png';
+import Logo from '../../../assets/google.png';
 
 export default function Google() {
   const { info } = useContext(Context)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import Arrow from '../../../assets/arrow.png'
+import Arrow from '../../assets/arrow.png'
 
 function ArrowRight({action, isOn}) {
   return (

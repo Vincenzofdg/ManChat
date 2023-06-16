@@ -3,7 +3,7 @@ import Context from '../context/Context'
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 
 import localized from '../localized/SignUp';
-import Picture from '../../assets/background.jpg';
+import Picture from '../assets/background.jpg';
 
 import Btn from '../component/stack/buttons'
 

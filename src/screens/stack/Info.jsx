@@ -7,7 +7,7 @@ import Context from '../../context/Context';
 import InputType from '../../component/stack/InputType';
 import ArrowRight from '../../component/stack/ArrowRight';
 
-import Picture from '../../../assets/background.jpg'
+import Picture from '../../assets/background.jpg'
 
 import { inputsTypes } from '../../localized/Roles';
 import localized from '../../localized/SignUp';

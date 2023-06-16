@@ -27,7 +27,7 @@ export const mockedUser = {
   displayName: 'vincenzofdg',
   age: '27',
   bio: 'The guy who are developing this project',
-  tags: [],
+  tags: ['test01', 'test02', 'test03', 'test04'],
 };
 
 export const inputsTypes = ['fullName', 'displayName', 'age', 'bio'];

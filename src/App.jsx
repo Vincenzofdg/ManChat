@@ -18,10 +18,6 @@ import NewsScreen from './screens/tab/News'
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const noHeader = {
-  headerShown: false,
-}
-
 const AppTheme = {
   ...DefaultTheme,
   colors: {
@@ -34,25 +30,29 @@ const ToHomeScreen = () => {
   const options = {
     headerShown: false,
     tabBarShowLabel: false,
-    tabBarActiveBackgroundColor: 'purple',
-    // tabBarInactiveBackgroundColor: 'black',
-    tabBarStyle: { backgroundColor: 'black' },
+    // tabBarActiveBackgroundColor: 'purple',
+    tabBarStyle: { 
+      backgroundColor: 'black',
+      borderTopWidth: 0,
+      height: 38
+    },
   };
 
-  const icon = (name, size) => {
-    const css = { width: size, height: size, tintColor: 'white' };
+  const icon = (name, focused) => {
+    const css = { width: 15, height: 15, tintColor: !!focused ? 'white' : 'gray'};
     let imagePath;
     switch (name) {
       case 'home':
-        imagePath = require('../assets/home.png');
+        imagePath = require('./assets/home.png');
         break;
       case 'lives':
-        imagePath = require('../assets/lives.png');
+        imagePath = require('./assets/lives.png');
         break;
       case 'news':
-        imagePath = require('../assets/news.png');
+        imagePath = require('./assets/news.png');
         break;
     }
+    
     return <Image source={imagePath} style={css} />
   }
 
@@ -61,28 +61,32 @@ const ToHomeScreen = () => {
       <Tab.Screen 
         name="Home" 
         component={HomeScreen}
-        options={{ tabBarIcon: ({size}) => icon('home', size) }}
+        options={{ tabBarIcon: ({focused}) => icon('home', focused) }}
       />
       <Tab.Screen 
         name="Lives"
         component={LivesScreen}
-        options={{ tabBarIcon: ({size}) => icon('lives', size) }}
+        options={{ tabBarIcon: ({focused}) => icon('lives', focused) }}
       />
       <Tab.Screen
         name="News" 
         component={NewsScreen}
-        options={{ tabBarIcon: ({size}) => icon('news', size) }}
+        options={{ tabBarIcon: ({focused}) => icon('news', focused) }}
       />
     </Tab.Navigator>
   )
 }
 
 export default function App() {
+  const options = {
+    headerShown: false,
+  };
+
   return (
     <Provider>
       <NavigationContainer theme={AppTheme}>
         <StatusBar barStyle="light-content" backgroundColor="black" />
-        <Stack.Navigator screenOptions={noHeader} initialRouteName='SignUp'>
+        <Stack.Navigator screenOptions={options} initialRouteName='SignUp'>
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="Info" component={InfoScreen} />
           <Stack.Screen name="Picture" component={PictureScreen} />

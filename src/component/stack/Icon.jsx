@@ -3,8 +3,8 @@ import { TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import Context from '../../context/Context';
 
 import localized from '../../localized/SignUp'
-import CameraIcon from '../../../assets/camera.png'
-import FolderIcon from '../../../assets/folder.png'
+import CameraIcon from '../../assets/camera.png'
+import FolderIcon from '../../assets/folder.png'
 
 export default function SignUp({type, press}) {
   const { info } = useContext(Context)

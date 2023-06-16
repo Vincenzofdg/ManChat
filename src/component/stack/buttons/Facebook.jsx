@@ -3,7 +3,7 @@ import Context from '../../../context/Context';
 import { TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 
 import localized from '../../../localized/SignUp';
-import Logo from '../../../../assets/facebook.png';
+import Logo from '../../../assets/facebook.png';
 
 export default function Facebook() {
   const { info } = useContext(Context)

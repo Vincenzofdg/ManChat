@@ -5,7 +5,7 @@ import { TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import localized from '../../../localized/SignUp';
-import Logo from '../../../../assets/apple.png';
+import Logo from '../../../assets/apple.png';
 
 import { mockedUser } from '../../../localized/Roles';
 
