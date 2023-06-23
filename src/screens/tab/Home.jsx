@@ -1,12 +1,17 @@
 import React, {useEffect, useContext, useState} from 'react';
 import Context from '../../context/Context';
-import { BackHandler, StyleSheet, SafeAreaView, View, Image, TouchableOpacity, Dimensions, Text } from 'react-native';
+import { BackHandler, FlatList, StyleSheet, SafeAreaView, View, Image, TouchableOpacity, Dimensions, Text } from 'react-native';
+import Card from '../../component/tab/Card';
+
+import localized from '../../localized/App';
+import { posts } from '../../mock';
 
 const { height , width } = Dimensions.get('window');
 
 function Home() {
-  const {user: {photo, tags}} = useContext(Context);
+  const {user: {photo, tags}, info} = useContext(Context);
   const [hideMenu, setHideMenu] = useState(true)
+  const str = localized[info.language] || localized['en'];
 
   useEffect(() => {
     function RemoveBackHandler() {
@@ -26,6 +31,8 @@ function Home() {
     )
   }
 
+  const renderCard = ({item}) => <Card info={item} />;
+
   return (
     <SafeAreaView style={styles.home}>
       <View style={[styles.navContainer, {opacity: hideMenu ? 1 : 0.3 }]}>
@@ -39,6 +46,15 @@ function Home() {
         </TouchableOpacity>
       </View>
 
+      <View style={{marginTop: 30}}>
+        <FlatList
+          data={posts}
+          horizontal={false}
+          renderItem={renderCard}
+          keyExtractor={({id}) => id}
+        />
+      </View>
+
       {/* toggle menu on */}
       <View style={[styles.expandedMenu, { display: hideMenu ? 'none' : 'flex' } ]}>
         <TouchableOpacity style={styles.menuOn} onPress={toggleMenuClick}>
@@ -46,14 +62,14 @@ function Home() {
           <View style={[styles.burgerBar, {transform: [{rotate: '-45deg'}], width: 50}]} />
         </TouchableOpacity>
         <View style={styles.toggleContent}>
-          <Text style={[styles.topic, {marginTop: 20,}]}>Your Topics</Text>
+          <Text style={[styles.topic, {marginTop: 20,}]}>{str.yourTopics}</Text>
           {
             tags.map((tag, i) => {
               const key = `${tag}-${i}`;
               const limit = 6
               if (i === 2) return (
                 <View key={key}>
-                  <Text style={styles.topic}>Other Topics</Text>
+                  <Text style={styles.topic}>{str.otherTopics}</Text>
                   {topicElement(tag, key)}
                 </View>
               )
@@ -65,11 +81,11 @@ function Home() {
         <View style={styles.status}>
           <TouchableOpacity style={styles.statusContainer}>
             <Text style={styles.counter}>99</Text>
-            <Text style={[styles.statusTopic]}>Messages</Text>
+            <Text style={[styles.statusTopic]}>{str.messages}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.statusContainer}>
             <Text style={styles.counter}>99</Text>
-            <Text style={styles.statusTopic}>Comments</Text>
+            <Text style={styles.statusTopic}>{str.comments}</Text>
           </TouchableOpacity>
         </View>
       </View>

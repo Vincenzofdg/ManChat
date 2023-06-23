@@ -21,15 +21,6 @@ export const userObj = {
   tags: [],
 };
 
-export const mockedUser = {
-  photo: 'https://avatars.githubusercontent.com/u/79121466?v=4',
-  fullName: 'Vincenzo Fedzuirek Di Giacomo',
-  displayName: 'vincenzofdg',
-  age: '27',
-  bio: 'The guy who are developing this project',
-  tags: ['test01', 'test02', 'test03', 'test04'],
-};
-
 export const inputsTypes = ['fullName', 'displayName', 'age', 'bio'];
 
 export const iconTakePicture = ['camera', 'folder'];

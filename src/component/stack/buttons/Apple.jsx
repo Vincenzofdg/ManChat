@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import localized from '../../../localized/SignUp';
 import Logo from '../../../assets/apple.png';
 
-import { mockedUser } from '../../../localized/Roles';
+import { user } from '../../../mock';
 
 export default function Apple() {
   const { info, setUser } = useContext(Context)
@@ -16,7 +16,7 @@ export default function Apple() {
   const { navigate } = useNavigation();
 
   const mocking = () => {
-    setUser(mockedUser)
+    setUser(user)
     navigate('HomePage')
   }
 

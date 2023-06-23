@@ -24,3 +24,5 @@ npm install @react-navigation/bottom-tabs
 
 npm install react-native-vector-icons
 
+
+npm install react-native-video
