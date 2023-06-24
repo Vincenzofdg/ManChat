@@ -5,13 +5,14 @@ import Context from './Context';
 function MyProvider({children}) {
   const [info, setInfo] = useState({});
   const [user, setUser] = useState({name: [], age: '', bio: ''});
+  const [login, setLogin] = useState({email: '', password: ''});
 
   useEffect(() => {
     const {countryCode, languageCode} = RNLocalize.getLocales()[0];
     setInfo({country: countryCode, language: languageCode});
   }, []);
 
-  const obj = {info, user, setUser};
+  const obj = {info, user, setUser, login, setLogin};
 
   return <Context.Provider value={obj}>{children}</Context.Provider>;
 }

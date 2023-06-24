@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import { StatusBar, Image } from 'react-native';
 import Provider from './context/Provider'
 
@@ -24,7 +24,8 @@ const AppTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: '#005E7C',
+    background: 'rgb(07,25,51)',
+    text: 'white'
   }
 }
 
@@ -34,14 +35,14 @@ const ToHomeScreen = () => {
     tabBarShowLabel: false,
     // tabBarActiveBackgroundColor: 'purple',
     tabBarStyle: { 
-      backgroundColor: 'black',
+      backgroundColor: 'rgb(07,25,51)',
       borderTopWidth: 0,
       height: 38
     },
   };
 
   const icon = (name, focused) => {
-    const css = { width: 15, height: 15, tintColor: !!focused ? 'white' : 'gray'};
+    const css = { width: 30, height: 30, tintColor: !!focused ? 'white' : 'gray'};
     let imagePath;
     switch (name) {
       case 'home':
@@ -65,15 +66,15 @@ const ToHomeScreen = () => {
         component={HomeScreen}
         options={{ tabBarIcon: ({focused}) => icon('home', focused) }}
       />
-      <Tab.Screen 
-        name="Lives"
-        component={LivesScreen}
-        options={{ tabBarIcon: ({focused}) => icon('lives', focused) }}
-      />
       <Tab.Screen
         name="News" 
         component={NewsScreen}
         options={{ tabBarIcon: ({focused}) => icon('news', focused) }}
+      />
+      <Tab.Screen 
+        name="Lives"
+        component={LivesScreen}
+        options={{ tabBarIcon: ({focused}) => icon('lives', focused) }}
       />
     </Tab.Navigator>
   )

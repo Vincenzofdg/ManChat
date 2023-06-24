@@ -4,13 +4,13 @@ import { StyleSheet, TouchableOpacity, Dimensions, Text, View } from 'react-nati
 
 const { width } = Dimensions.get('window');
 
-function Card({info}) {
+function Card({info, idDisabled}) {
   const { navigate } = useNavigation();
 
   const handlePress = () => navigate('Post', info);
   
   return (
-    <TouchableOpacity style={styles.card} onPress={handlePress}>
+    <TouchableOpacity disabled={!idDisabled} style={styles.card} onPress={handlePress}>
       <Text style={styles.title}>{info.title}</Text>
       <Text style={styles.text}>{info.content}</Text>
       <View style={styles.tagContainer}>

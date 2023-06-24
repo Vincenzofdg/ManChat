@@ -3,8 +3,8 @@ import Context from '../../context/Context'
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, SafeAreaView, Text, View } from 'react-native';
 
-import localized from '../../localized/SignUp'
-import { tags } from '../../localized/Roles'
+import localized from '../../localized/SignUp';
+import { tags } from '../../mock';
 import ArrowRight from '../../component/stack/ArrowRight';
 import Tag from '../../component/stack/Tag';
 
@@ -24,7 +24,7 @@ function SignUp() {
       </View>
       <View style={styles.tags}>
         {
-          tags.map(tag => <Tag key={tag + '-key'} name={ tag } />)
+          tags.map(tag => <Tag key={tag.name + '-key'} name={ tag.name } />)
         }
       </View>
       <ArrowRight action={handlesNext} isOn={ true }/>

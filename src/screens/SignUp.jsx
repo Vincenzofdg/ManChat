@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
 import Context from '../context/Context'
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-
+import { StyleSheet, View, KeyboardAvoidingView, Image, Dimensions, Text, TouchableOpacity } from 'react-native';
 import localized from '../localized/SignUp';
-import Picture from '../assets/background.jpg';
+import Logo from '../assets/logo.png'
+import InputText from '../component/logInScreen/TextInput';
+import Buttom from '../component/logInScreen/Buttom';
 
-import Btn from '../component/stack/buttons'
+const { width, height } = Dimensions.get('window');
 
 function SignUp() {
   const { info } = useContext(Context)
@@ -13,18 +14,17 @@ function SignUp() {
 
   return (
     <View style={styles.page}>
-      <ImageBackground resizeMode='cover' source={Picture} style={styles.img} />
-      <View style={styles.container}>
-        <View style={styles.up}>
-          <Text style={styles.text}>{str.app_name}</Text>
-          <Text style={styles.subText}>{str.slogan}</Text>
-        </View>
-        <View style={styles.down}>
-            <Btn.Apple />
-            <Btn.Facebook />
-            <Btn.Google />
-            <Btn.NewUser />
-        </View>
+      <Image source={Logo} style={styles.logo} />
+      <KeyboardAvoidingView behavior='padding' style={styles.login}>
+        <InputText type={'email'} title={str.email} placeholder={str.emailPlaceholder}/>
+        <InputText type={'password'} title={str.password} placeholder={str.passwordPlaceholder}/>
+      </KeyboardAvoidingView>
+      <View style={styles.submit}>
+        <Buttom type={'login'} title={str.login}/>
+        <TouchableOpacity style={{margin: 10}}>
+          <Text style={styles.resetPassword}>{str.passwordForgot}</Text>
+        </TouchableOpacity>
+        <Buttom type={'newUser'} title={str.signUp}/>
       </View>
     </View>
   )
@@ -33,39 +33,27 @@ function SignUp() {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-  },
-  img: {
-    position: 'absolute',
-    height: '100%',
-    width: '100%',
-    opacity: 0.6,
-    zIndex: 0,
-  },
-  container: {
-    height: '100%',
-    zIndex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 20
   },
-  up: {
-    marginBottom: 50,
+  logo: {
+    width: 150,
+    height: 150,
   },
-  down: {
-    height: 300,
-    justifyContent: 'space-around',
-    alignItems: 'center',
+  login: {
+    width: width - 100,
+    height: height / 3.3,
+    justifyContent: 'space-around'
   },
-  text: {
-    color: '#0c0c0c',
-    fontWeight: 900,
-    fontSize: 28,
-    alignSelf: 'center',
+  submit: {
+    width: width - 100,
+    height: height / 3,
   },
-  subText: {
-    color: '#0c0c0c',
-    fontSize: 16,
-    fontStyle: 'italic',
-  },
+  resetPassword: {
+    color: 'white',
+    alignSelf: 'flex-end',
+  }
 })
 
 export default SignUp;

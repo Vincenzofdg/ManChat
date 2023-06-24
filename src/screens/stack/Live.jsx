@@ -13,7 +13,6 @@ function Live({route: {params}, navigation}) {
   const str = localized[info.language] || localized['en'];
 
   const goBack = () => navigation.goBack();
-   console.log(params)
 
   return (
     <SafeAreaView>

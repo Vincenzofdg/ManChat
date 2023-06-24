@@ -31,16 +31,3 @@ export const cameraOptions = {
   maxWidth: 500,
   maxHeight: 500,
 };
-
-export const tags = [
-  'anxiety',
-  'depression',
-  'addiction',
-  'ptsd',
-  'm.h',
-  'ex-girlfriend',
-  'sexuality',
-  'family',
-  'unemployment',
-  'erection',
-];

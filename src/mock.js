@@ -75,11 +75,33 @@ export const lives = [
   {id: 10, title: 'Live 10', auth: 'Person 10'},
 ];
 
+export const tags = [
+  {id: 1, name: 'Anxiety', photo: ''},
+  {id: 2, name: 'Mental Health', photo: ''},
+  {id: 3, name: 'Gaming', photo: ''},
+  {id: 4, name: 'Football', photo: ''},
+  {id: 5, name: 'DIY', photo: ''},
+  {id: 6, name: 'Relationships', photo: ''},
+  {id: 7, name: 'Addiction', photo: ''},
+  {id: 8, name: 'Fitness', photo: ''},
+  {id: 7, name: 'Travelling', photo: ''},
+  {id: 8, name: 'Music', photo: ''},
+];
+
+export const newUser = {
+  photo: '',
+  fullName: '',
+  displayName: '',
+  age: '',
+  bio: '',
+  tags: [],
+};
+
 export const user = {
   photo: 'https://avatars.githubusercontent.com/u/79121466?v=4',
   fullName: 'Vincenzo Fedzuirek Di Giacomo',
   displayName: 'vincenzofdg',
   age: '27',
   bio: 'The guy who are developing this project',
-  tags: ['test01', 'test02', 'test03', 'test04'],
+  tags: [tags[1].name, tags[2].name, tags[3].name, tags[4].name, tags[5].name],
 };
