@@ -1,9 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import Context from '../../context/Context';
 import { useTheme } from '@react-navigation/native';
-import { StyleSheet, Dimensions, View, Text, TouchableOpacity } from 'react-native';
-
-const { height , width } = Dimensions.get('window');
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 export default function Tag({name, selected}) {
   const { user: {tags}, setUser } = useContext(Context)
@@ -29,18 +27,13 @@ export default function Tag({name, selected}) {
 
   return (
     <View style={styles.tag}>
-
       {/* DEPOIS SUBISTIBUIR PELO ICON */}
       <View style={styles.icon}/>
-
       <View style={styles.tagName}>
         <Text style={theme('tagText')}>{name}</Text>
         <TouchableOpacity style={styles.mask} onPress={handleClick}>
-
           <View style={styles.selected} />
-
           { !selected && <View style={styles.notSelected} /> }
-
         </TouchableOpacity>
       </View>
     </View>

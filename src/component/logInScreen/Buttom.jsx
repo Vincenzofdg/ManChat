@@ -4,9 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-
 import { user, newUser } from '../../mock';
-
 
 export default function Buttom({title, type}) {
   const {navigate} = useNavigation();
@@ -28,7 +26,6 @@ export default function Buttom({title, type}) {
       navigate('HomePage')
     }
   }
-
 
   return (
     <TouchableOpacity onPress={handlePress} style={styles.buttom}>

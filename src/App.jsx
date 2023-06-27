@@ -5,6 +5,8 @@ import { NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import { StatusBar, Image } from 'react-native';
 import Provider from './context/Provider'
 
+import Imgs from './localized/Images';
+
 // Stack Navigation
 import SignUpScreen from './screens/SignUp';
 import InfoScreen from './screens/stack/Info'
@@ -46,13 +48,13 @@ const ToHomeScreen = () => {
     let imagePath;
     switch (name) {
       case 'home':
-        imagePath = require('./assets/home.png');
+        imagePath = Imgs.home;
         break;
       case 'lives':
-        imagePath = require('./assets/lives.png');
+        imagePath = Imgs.lives;
         break;
       case 'news':
-        imagePath = require('./assets/news.png');
+        imagePath = Imgs.news;
         break;
     }
     

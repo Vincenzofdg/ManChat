@@ -1,9 +1,17 @@
 import React, {useContext, useEffect, useState  } from 'react';
 import Context from '../../context/Context';
 import { useTheme } from '@react-navigation/native';
-import { StyleSheet, Dimensions, View, Text, Image, TouchableOpacity, FlatList } from 'react-native';
+import { 
+  StyleSheet, 
+  Dimensions, 
+  View, 
+  Text, 
+  Image, 
+  TouchableOpacity, 
+  FlatList } from 'react-native';
 
 import Tag from './Tag';
+import StatusBtn from './StatusBtn';
 
 import { tags as allTags } from '../../mock';
 
@@ -11,9 +19,10 @@ const { height , width } = Dimensions.get('window');
 
 export default function HiddenMenu({isOn, hide, icon}) {
   const [otherTags, setOtherTags] = useState([])
-  const { user } = useContext(Context)
+  const { user, info } = useContext(Context)
   const { colors: {text} } = useTheme(); 
   const theme = (css) => [styles[css], {color: text}];
+  const str = localized[info.language] || localized['en'];
 
   useEffect(() => {
     const unSelectedTags = allTags.reduce((acc, cur) => {
@@ -34,7 +43,7 @@ export default function HiddenMenu({isOn, hide, icon}) {
     return (
       <View style={styles.topicsTitle}>
         <Text style={theme('topics')}>
-          {isSelected ? 'Your Topics' : 'Explore Other Topics'}
+          {isSelected ? str.yourTopics : str.otherTopics}
         </Text>
         <FlatList 
           data={tags}
@@ -55,12 +64,8 @@ export default function HiddenMenu({isOn, hide, icon}) {
       { tagList(otherTags, false) }
       <View style={styles.line} />
       <View style={styles.status} >
-        <TouchableOpacity>
-          <Text>New Messages</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>New Replies</Text>
-        </TouchableOpacity>
+        <StatusBtn text={str.newMessager} type={'message'}/>
+        <StatusBtn text={str.newReplies} type={'reply'}/>
       </View>
     </View>
   );
@@ -78,10 +83,10 @@ const styles = StyleSheet.create({
   icon: {
     marginTop: 20,
     marginLeft: 20,
-    size: {width: 35, height: 35}
+    size: {width: 30, height: 30}
   },
   topicsTitle: {
-    height: width / 2.3,
+    height: width / 2.1,
     marginTop: 20,
   },
   topics: {
@@ -94,14 +99,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 15,
     width: '70%',
-    height: 3,
+    height: 2,
     alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 10
   },
   status: {
-    backgroundColor: 'green',
-    flexGrow: 1,
-    
+    // padding: 20,
+    marginLeft: 35
   }
 });

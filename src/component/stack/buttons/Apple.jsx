@@ -5,7 +5,7 @@ import { TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import localized from '../../../localized/SignUp';
-import Logo from '../../../assets/apple.png';
+import Imgs from '../../../localized/Images';
 
 import { user } from '../../../mock';
 
@@ -22,7 +22,7 @@ export default function Apple() {
 
   return (
     <TouchableOpacity style={styles.btn} onPress={mocking}>
-      <Image source={Logo} style={styles.logo} />
+      <Image source={Imgs.apple} style={styles.logo} />
       <Text style={styles.text}>{str.apple}</Text>
     </TouchableOpacity>
   );

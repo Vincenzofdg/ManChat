@@ -2,14 +2,13 @@ import React, {useContext} from 'react';
 import { TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import Context from '../../context/Context';
 
+import Imgs from '../../localized/Images';
 import localized from '../../localized/SignUp'
-import CameraIcon from '../../assets/camera.png'
-import FolderIcon from '../../assets/folder.png'
 
 export default function SignUp({type, press}) {
   const { info } = useContext(Context)
   const str = localized[info.language] || localized['en'];
-  const img = type === 'camera' ? CameraIcon : FolderIcon;
+  const img = type === 'camera' ? Imgs.camera : Imgs.folder;
   return (
     <TouchableOpacity style={styles.container} onPress={press}>
       <Image source={img} style={styles.picutre} />

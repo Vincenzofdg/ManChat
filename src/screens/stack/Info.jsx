@@ -1,13 +1,10 @@
 import React, { useContext, useState, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ImageBackground, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import Context from '../../context/Context';
-
 
 import InputType from '../../component/stack/InputType';
 import ArrowRight from '../../component/stack/ArrowRight';
-
-import Picture from '../../assets/background.jpg'
 
 import { inputsTypes } from '../../localized/Roles';
 import localized from '../../localized/SignUp';
@@ -32,7 +29,6 @@ function Info() {
 
   return (
     <>
-      <ImageBackground resizeMode='cover' source={Picture} style={styles.img} />
       <KeyboardAvoidingView style={styles.page} behavior='height'>
         {
           inputsTypes.map((input, index) => 
@@ -58,13 +54,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     height: '100%',
     marginTop: 45,
-  },
-  img: {
-    position: 'absolute',
-    height: '100%',
-    width: '100%',
-    opacity: 0.4,
-    zIndex: 0,
   },
 })
 

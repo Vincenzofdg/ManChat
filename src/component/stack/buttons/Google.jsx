@@ -3,7 +3,7 @@ import Context from '../../../context/Context';
 import { TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 
 import localized from '../../../localized/SignUp';
-import Logo from '../../../assets/google.png';
+import Imgs from '../../../localized/Images';
 
 export default function Google() {
   const { info } = useContext(Context)
@@ -11,7 +11,7 @@ export default function Google() {
 
   return (
     <TouchableOpacity style={styles.btn}>
-      <Image source={Logo} style={styles.logo} />
+      <Image source={Imgs.google} style={styles.logo} />
       <Text style={styles.text}>{str.google}</Text>
     </TouchableOpacity>
   );

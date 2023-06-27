@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import Arrow from '../../assets/arrow.png'
+import Imgs from '../../localized/Images';
 
 function ArrowRight({action, isOn}) {
   return (
     <TouchableOpacity style={styles.next} onPress={action} disabled={!isOn}>
-      <Image source={Arrow} style={styles.arrow} resizeMode="contain" />
+      <Image source={Imgs.arrow} style={styles.arrow} resizeMode="contain" />
     </TouchableOpacity>
   )
 }

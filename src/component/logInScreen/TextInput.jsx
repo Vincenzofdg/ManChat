@@ -15,16 +15,16 @@ export default function InputText({title, placeholder, type}) {
   }
 
   return (
-      <View>
-          <Text style={[styles.title, { color: text }]}>{title}</Text>
-          <TextInput
-            value={login[type]}
-            onChangeText={handleChange}
-            placeholder={placeholder}
-            style={styles.input}
-            placeholderTextColor='black'
-          />
-      </View>
+    <View>
+      <Text style={[styles.title, { color: text }]}>{title}</Text>
+      <TextInput
+        value={login[type]}
+        onChangeText={handleChange}
+        placeholder={placeholder}
+        style={styles.input}
+        placeholderTextColor='black'
+      />
+    </View>
   );
 }
 

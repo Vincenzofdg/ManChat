@@ -1,8 +1,16 @@
 import React, {useContext} from 'react';
 import Context from '../context/Context'
-import { StyleSheet, View, KeyboardAvoidingView, Image, Dimensions, Text, TouchableOpacity } from 'react-native';
+import { 
+  StyleSheet, 
+  View, 
+  KeyboardAvoidingView, 
+  Image, 
+  Dimensions, 
+  Text, 
+  TouchableOpacity } from 'react-native'
+
+import Imgs from '../localized/Images'
 import localized from '../localized/SignUp';
-import Logo from '../assets/logo.png'
 import InputText from '../component/logInScreen/TextInput';
 import Buttom from '../component/logInScreen/Buttom';
 
@@ -14,7 +22,7 @@ function SignUp() {
 
   return (
     <View style={styles.page}>
-      <Image source={Logo} style={styles.logo} />
+      <Image source={Imgs.logo} style={styles.logo} />
       <KeyboardAvoidingView behavior='padding' style={styles.login}>
         <InputText type={'email'} title={str.email} placeholder={str.emailPlaceholder}/>
         <InputText type={'password'} title={str.password} placeholder={str.passwordPlaceholder}/>
