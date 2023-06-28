@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   line: {
     marginTop: 25,
-    marginBottom: 30,
+    marginBottom: 25,
     width: '70%',
     height: 2,
     alignSelf: 'center',
@@ -107,6 +107,6 @@ const styles = StyleSheet.create({
   },
   status: {
     // padding: 20,
-    marginLeft: 10
+    marginLeft: 25
   }
 });
