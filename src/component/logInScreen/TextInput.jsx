@@ -1,11 +1,13 @@
 import React, {useContext} from 'react';
 import Context from '../../context/Context';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Platform } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 export default function InputText({title, placeholder, type}) {
   const { colors: {text} } = useTheme(); 
   const { login, setLogin } = useContext(Context);
+
+  const isIOS = Platform.OS === 'ios' && {height: 50}
 
   const handleChange = (value) => {
     setLogin(prev => ({ 
@@ -21,7 +23,7 @@ export default function InputText({title, placeholder, type}) {
         value={login[type]}
         onChangeText={handleChange}
         placeholder={placeholder}
-        style={styles.input}
+        style={[styles.input, isIOS]}
         placeholderTextColor='black'
       />
     </View>
@@ -36,6 +38,8 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: 'white',
-    borderRadius: 10
+    borderRadius: 10,
+    // height: 50,
+    // Platform.OS === 'ios' && 40
   }
 });

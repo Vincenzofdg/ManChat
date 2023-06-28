@@ -8,7 +8,8 @@ import {
   Text, 
   Image, 
   TouchableOpacity, 
-  FlatList } from 'react-native';
+  FlatList,
+  Platform } from 'react-native';
 
 import Tag from './Tag';
 import StatusBtn from './StatusBtn';
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     width: width / 1.7,
   },
   icon: {
-    marginTop: 20,
+    marginTop:  Platform.OS === 'ios'? 40 : 20,
     marginLeft: 20,
     size: {width: 30, height: 30}
   },
@@ -96,8 +97,8 @@ const styles = StyleSheet.create({
     fontWeight: 800
   },
   line: {
-    marginTop: 20,
-    marginBottom: 15,
+    marginTop: 25,
+    marginBottom: 30,
     width: '70%',
     height: 2,
     alignSelf: 'center',
@@ -106,6 +107,6 @@ const styles = StyleSheet.create({
   },
   status: {
     // padding: 20,
-    marginLeft: 35
+    marginLeft: 10
   }
 });
