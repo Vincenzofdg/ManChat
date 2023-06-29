@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     height,
-    width: width / 1.7,
+    width: width / 1.5,
   },
   icon: {
     marginTop:  Platform.OS === 'ios'? 40 : 20,

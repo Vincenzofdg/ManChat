@@ -11,7 +11,7 @@ export default function StatusBtn({text, type}) {
     <TouchableOpacity style={styles.btn}>
       <Image source={img} style={styles.icon}/>
       <View style={styles.textContainer}>
-        <Text style={[styles.text, {marginRight: 10}]}>{qtd}</Text>
+        <Text style={[styles.text, {marginRight: 5}]}>{qtd}</Text>
         <Text style={styles.text}>{text}</Text>
       </View>
     </TouchableOpacity>
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 17,
+    fontSize: 16,
   }
 });

@@ -5,15 +5,22 @@ import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 
 import Context from '../../context/Context';
 import Icon from '../../component/stack/Icon'
-import { iconTakePicture as imgs, cameraOptions as options } from '../../localized/Roles';
+import { iconTakePicture as imgs } from '../../localized/Roles';
 
 function Picture() {
   const { setUser } = useContext(Context)
   const { navigate } = useNavigation();
 
   const savePicture = (res) => {
-    const condition = !res.didCancel && !res.error;
-    if (condition) {
+    const conditionsToSave = !res.didCancel && !res.error && !res.errorCode;
+    const cameraError = !res.errorCode;
+
+    console.log(conditionsToSave)
+    console.log(cameraError)
+
+    !cameraError && console.log('No Camera Founded')
+
+    if (conditionsToSave && cameraError) {
       setUser((prev) => ({
         ...prev,
         photo: res.assets[0].uri
@@ -23,13 +30,21 @@ function Picture() {
   }
   const handlePictureChose = () => {
     launchImageLibrary(
-      { mediaType: 'photo'}, 
+      { 
+        mediaType: 'photo'
+      }, 
       (response) => savePicture(response));
   };
 
   const handleTakePicture = () => {
+    console.log('chamou')
     launchCamera(
-      options,
+      {
+        mediaType: 'photo',
+        quality: 0.5,
+        maxWidth: 500,
+        maxHeight: 500,
+      },
       (response) => savePicture(response)
     );
   };

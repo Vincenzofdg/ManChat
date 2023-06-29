@@ -39,7 +39,5 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
     borderRadius: 10,
-    // height: 50,
-    // Platform.OS === 'ios' && 40
   }
 });

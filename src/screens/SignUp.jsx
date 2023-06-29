@@ -7,7 +7,9 @@ import {
   Image, 
   Dimensions, 
   Text, 
-  TouchableOpacity } from 'react-native'
+  TouchableOpacity,
+  SafeAreaView,
+  Platform } from 'react-native'
 
 import Imgs from '../localized/Images'
 import localized from '../localized/SignUp';
@@ -21,7 +23,7 @@ function SignUp() {
   const str = localized[info.language] || localized['en'];
 
   return (
-    <View style={styles.page}>
+    <SafeAreaView style={styles.page}>
       <Image source={Imgs.logo} style={styles.logo} />
       <KeyboardAvoidingView behavior='padding' style={styles.login}>
         <InputText type={'email'} title={str.email} placeholder={str.emailPlaceholder}/>
@@ -34,7 +36,7 @@ function SignUp() {
         </TouchableOpacity>
         <Buttom type={'newUser'} title={str.signUp}/>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 20
+    marginTop: Platform.OS === 'ios'? 40 : 20
   },
   logo: {
     width: 150,

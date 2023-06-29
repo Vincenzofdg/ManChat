@@ -14,6 +14,8 @@ const images = {
   message: require('../assets/message.png'),
   reply: require('../assets/reply.png'),
 
+  search: require('../assets/search.png'),
+
   apple: require('../assets/apple.png'),
   facebook: require('../assets/facebook.png'),
   google: require('../assets/google.png'),

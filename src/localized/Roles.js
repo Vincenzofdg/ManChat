@@ -24,10 +24,3 @@ export const userObj = {
 export const inputsTypes = ['fullName', 'displayName', 'age', 'bio'];
 
 export const iconTakePicture = ['camera', 'folder'];
-
-export const cameraOptions = {
-  mediaType: 'photo',
-  quality: 0.5,
-  maxWidth: 500,
-  maxHeight: 500,
-};
