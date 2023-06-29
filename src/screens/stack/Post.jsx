@@ -8,11 +8,13 @@ import {
   ScrollView, 
   TextInput, 
   Dimensions, 
-  TouchableOpacity, 
+  TouchableOpacity,
+  Image,
   KeyboardAvoidingView } from 'react-native';
 
 import localized from '../../localized/App'
-import ArrowLeft from '../../component/stack/ArrowLeft';
+
+import Imgs from '../../localized/Images';
 
 const { height , width } = Dimensions.get('window');
 
@@ -32,103 +34,124 @@ function Post({route: {params}, navigation}) {
   }
 
   return (
-    <KeyboardAvoidingView behavior='padding'>
-      <ArrowLeft action={goBack} text={str.back}/>
-      <View style={styles.upperContainer}>
-        <Text style={styles.title}>{params.title}</Text>
-        <View style={styles.tag}>
-          <Text style={{color: 'white', textAlign: 'center'}}>{params.tag}</Text>
+    <ScrollView>
+      <TouchableOpacity style={styles.goBack} onPress={goBack}>
+        <View style={styles.arrow}>
+          <View style={[styles.arrow.bar, {transform: [{rotate: '-30deg'}]}]}/>
+          <View style={[styles.arrow.bar, {transform: [{rotate: '30deg'}]}]}/>
         </View>
-      </View>
-      <View style={styles.content}>
-        <Text style={styles.contentText}>{params.content}</Text>
-      </View>
-      <View style={styles.comments}>
-        
-        <Text style={styles.commentLabel}>Comments:</Text>
-        <View>
-          {
-            comments.map(comment => {
-              return (
-                <Text key={comment} style={styles.commentLabel}>{comment}</Text>
-              )
-            })
-          }
-        </View>
+        <Text style={{color: 'white'}}>Return</Text>
+      </TouchableOpacity>
 
-
-        <View style={styles.commentContainer}>
-          <TextInput 
-            style={styles.commentInput} 
-            placeholderTextColor="white" 
-            placeholder='reply...'
-            value={comment}
-            onChangeText={handleChange}
-          />
+      <View style={styles.post}>
+        <View style={styles.postUp}>
+          <TouchableOpacity style={{marginRight: 10}}>
+            <Image style={styles.profile} source={Imgs.profile}/>
+          </TouchableOpacity>
           
-            <TouchableOpacity onPress={handlePress} style={styles.btnPost}>
-              <Text style={{color: 'white'}}>Send</Text>
-            </TouchableOpacity>
+          <Text style={{fontSize: 12, flexGrow: 1}}>{params.auth} posted {params.posted} hours ago</Text>
+        
+          <Text style={[styles.tag, {backgroundColor: 'pink',}]}>{params.tag}</Text>
         </View>
       </View>
-    </KeyboardAvoidingView>
+
+
+
+    </ScrollView>
+    // <KeyboardAvoidingView behavior='padding'>
+    //   <ArrowLeft action={goBack} text={str.back}/>
+    //   <View style={styles.upperContainer}>
+    //     <Text style={styles.title}>{params.title}</Text>
+    //     <View style={styles.tag}>
+    //       <Text style={{color: 'white', textAlign: 'center'}}>{params.tag}</Text>
+    //     </View>
+    //   </View>
+    //   <View style={styles.content}>
+    //     <Text style={styles.contentText}>{params.content}</Text>
+    //   </View>
+    //   <View style={styles.comments}>
+        
+    //     <Text style={styles.commentLabel}>Comments:</Text>
+    //     <View>
+    //       {
+    //         comments.map(comment => {
+    //           return (
+    //             <Text key={comment} style={styles.commentLabel}>{comment}</Text>
+    //           )
+    //         })
+    //       }
+    //     </View>
+
+
+    //     <View style={styles.commentContainer}>
+    //       <TextInput 
+    //         style={styles.commentInput} 
+    //         placeholderTextColor="white" 
+    //         placeholder='reply...'
+    //         value={comment}
+    //         onChangeText={handleChange}
+    //       />
+          
+    //         <TouchableOpacity onPress={handlePress} style={styles.btnPost}>
+    //           <Text style={{color: 'white'}}>Send</Text>
+    //         </TouchableOpacity>
+    //     </View>
+    //   </View>
+    // </KeyboardAvoidingView>
   )
 }
 
 const styles = StyleSheet.create({
-  upperContainer: {
-    minHeight: 30,
+  goBack: {
+    marginTop: 50,
+    marginLeft: 10,
+    marginBottom: 20,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    overflow: 'hidden',
+    width: 60,
+    height: 20,
   },
-  title: {
-    color: 'white',
-    fontWeight: 600,
-    fontSize: 18
+  arrow: {
+    justifyContent: 'center',
+    bar: {
+      position: 'absolute',
+      left: -12,
+      backgroundColor: 'white',
+      width: 25,
+      height: 3,
+      borderRadius: 20
+    }
+  },
+  post: {
+    backgroundColor: 'white',
+    padding: 10,
+    width: '95%',
+    alignSelf: 'center',
+    borderRadius: 10
+  },
+  postUp: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  profile: {
+    width: 30,
+    height: 30,
+    tintColor: 'black',
   },
   tag: {
-    borderColor: 'white',
-    borderWidth: 1,
+    minWidth: 60,
+    textAlign: 'center',
     borderRadius: 10,
-    minWidth: 70,
+    overflow: 'hidden',
   },
-  content: {
-    marginTop: 30,
-    marginLeft: 10,
-    marginRight: 10,
+  postMiddle: {
+    
   },
-  contentText: {
-    color: 'white',
-    lineHeight: 25,
+  postDown: {
+    
   },
-  btnPost: {
-    backgroundColor: 'gray',
-    width: 40,
-    height: 40,
-    borderRadius: 40,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  commentContainer: { 
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  comments: {
-    marginTop: 30,
-  },
-  commentInput: {
-    color: 'white',
-    width: width - 100,
-    alignSelf: 'center',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
-  },
-  commentLabel: {
-    color: 'white',
-    padding: 40,
-  }
 })
 
 export default Post;

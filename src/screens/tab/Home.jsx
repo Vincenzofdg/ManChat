@@ -17,10 +17,12 @@ import HiddenMenu from '../../component/homeScreen/HiddenMenu';
 import { posts as data } from '../../mock';
 
 function Home() {
-  const { user: {photo} } = useContext(Context)
+  const { user: {photo}, info } = useContext(Context)
   const [hideMenu, setHideMenu] = useState(true)
   const [postToSearch, setPostToSearch] = useState('')
   const [posts, setPosts] = useState('')
+
+  const str = localized[info.language] || localized['en'];
 
   useEffect(() => {
     function RemoveBackHandler() {
@@ -39,7 +41,7 @@ function Home() {
     setPosts(filteredPosts)
   }
 
-  const renderCard = ({item}) => <Card idDisabled={hideMenu} info={item} />;
+  const renderCard = ({item}) => <Card idDisabled={hideMenu} data={item} />;
 
   return (
     <SafeAreaView style={styles.home}>
@@ -47,7 +49,7 @@ function Home() {
         <TouchableOpacity  style={styles.menu} onPress={toggleMenuClick}>
           <Image source={Imgs.menu} style={{width: 30, height: 30, opacity: hideMenu ? 1 : 0.05}} />
         </TouchableOpacity>
-        <Image source={Imgs.app} style={{width: 45, height: 45}} />
+        <Image source={Imgs.app} style={{width: 50, height: 45}} />
         <TouchableOpacity disabled={hideMenu ? false : true}>
           <Image source={{uri: photo || Imgs.profile}} style={styles.profilePicture} />
         </TouchableOpacity>
@@ -57,12 +59,12 @@ function Home() {
         <TextInput 
           value={postToSearch}
           onChangeText={handleChange}
-          placeholder='Search for answers'
+          placeholder={str.inputSearch}
           style={styles.searchPost}
           placeholderTextColor='black'
         />
       </View>
-      <View style={{marginTop: 30}}>
+      <View style={{marginTop: 8}}>
         <FlatList
           data={posts}
           horizontal={false}
@@ -88,8 +90,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   profilePicture: {
-    width: 50,
-    height: 50,
+    width: 42,
+    height: 42,
     borderRadius: 100
   },
   searchContainer: {
@@ -109,8 +111,6 @@ const styles = StyleSheet.create({
   },
   searchPost: {
     flexGrow: 1
-    // width: '100%',
-    // height: '100%',
   }
 })
 

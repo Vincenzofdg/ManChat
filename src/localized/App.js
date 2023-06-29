@@ -7,6 +7,8 @@ export default localized = {
     newMessager: 'New Messages',
     newReplies: 'New Replies',
     back: 'return',
+    inputSearch: 'Search for answers',
+    timeStatus: (who, when) => `${who} posted ${when} hours ago`,
   },
   pt: {
     messages: 'Mensagens',
@@ -16,5 +18,6 @@ export default localized = {
     newMessager: 'Novas Mensagens',
     newReplies: 'Novas Respostas',
     back: 'voltar',
+    inputSearch: 'Procurar resposta',
   },
 };

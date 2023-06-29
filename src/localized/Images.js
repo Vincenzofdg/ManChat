@@ -15,6 +15,7 @@ const images = {
   reply: require('../assets/reply.png'),
 
   search: require('../assets/search.png'),
+  like: require('../assets/like.png'),
 
   apple: require('../assets/apple.png'),
   facebook: require('../assets/facebook.png'),
