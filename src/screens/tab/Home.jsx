@@ -68,6 +68,7 @@ function Home() {
         <FlatList
           data={posts}
           horizontal={false}
+          showsVerticalScrollIndicator={false}
           renderItem={renderCard}
           keyExtractor={({id}) => id}
           scrollEnabled={hideMenu} 

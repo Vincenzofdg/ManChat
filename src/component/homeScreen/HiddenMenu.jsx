@@ -49,6 +49,7 @@ export default function HiddenMenu({isOn, hide, icon}) {
         <FlatList 
           data={tags}
           horizontal={false}
+          showsVerticalScrollIndicator={false}
           renderItem={renderTag}
           keyExtractor={index => `tag-${index}`}
         />
