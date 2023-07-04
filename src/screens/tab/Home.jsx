@@ -46,7 +46,7 @@ function Home() {
   return (
     <SafeAreaView style={styles.home}>
       <View style={styles.navContainer}>
-        <TouchableOpacity  style={styles.menu} onPress={toggleMenuClick}>
+        <TouchableOpacity onPress={toggleMenuClick}>
           <Image source={Imgs.menu} style={{width: 30, height: 30, opacity: hideMenu ? 1 : 0.05}} />
         </TouchableOpacity>
         <Image source={Imgs.app} style={{width: 50, height: 45}} />
@@ -64,7 +64,7 @@ function Home() {
           placeholderTextColor='black'
         />
       </View>
-      <View style={{marginTop: 8}}>
+      <View style={styles.cardsList}>
         <FlatList
           data={posts}
           horizontal={false}
@@ -112,6 +112,10 @@ const styles = StyleSheet.create({
   },
   searchPost: {
     flexGrow: 1
+  },
+  cardsList: {
+    marginTop: 8,
+    maxHeight: '80%',
   }
 })
 
