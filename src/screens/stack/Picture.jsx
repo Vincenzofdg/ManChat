@@ -15,9 +15,6 @@ function Picture() {
     const conditionsToSave = !res.didCancel && !res.error && !res.errorCode;
     const cameraError = !res.errorCode;
 
-    console.log(conditionsToSave)
-    console.log(cameraError)
-
     !cameraError && console.log('No Camera Founded')
 
     if (conditionsToSave && cameraError) {
@@ -37,7 +34,6 @@ function Picture() {
   };
 
   const handleTakePicture = () => {
-    console.log('chamou')
     launchCamera(
       {
         mediaType: 'photo',

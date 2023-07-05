@@ -31,6 +31,7 @@ function Home() {
     RemoveBackHandler()
 
     setPosts(data)
+    setHideMenu(true)
   }, []);
 
   const toggleMenuClick = () => setHideMenu(!hideMenu);

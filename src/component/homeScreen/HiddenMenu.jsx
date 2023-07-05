@@ -19,23 +19,34 @@ import { tags as allTags } from '../../mock';
 const { height , width } = Dimensions.get('window');
 
 export default function HiddenMenu({isOn, hide, icon}) {
-  const [otherTags, setOtherTags] = useState([])
-  const { user, info } = useContext(Context)
+  const [otherTags, setOtherTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+  const { user, setUser , info } = useContext(Context)
   const { colors: {text} } = useTheme(); 
   const theme = (css) => [styles[css], {color: text}];
   const str = localized[info.language] || localized['en'];
 
   useEffect(() => {
-    const unSelectedTags = allTags.reduce((acc, cur) => {
+    const {selected, notSelected} = allTags.reduce((acc, cur) => {
       const didUserSelectedIt = user.tags.includes(cur.name);
-      !didUserSelectedIt && acc.push(cur.name);
+      if (!didUserSelectedIt) {
+        acc.notSelected.push(cur.name);
+        return acc;
+      };
+      acc.selected.push(cur.name);
       return acc;
-    }, [])
-    setOtherTags(unSelectedTags)
+    }, {selected: [], notSelected: []})
+
+    setOtherTags(notSelected)
+    setSelectedTags(selected)
   }, [user])
 
   const menuClose = () => {
     // atualiza o banco de dados
+    setUser(prev => ({
+      ...prev,
+      tags: selectedTags,
+    }))
     hide();
   }
 
@@ -51,7 +62,7 @@ export default function HiddenMenu({isOn, hide, icon}) {
           horizontal={false}
           showsVerticalScrollIndicator={false}
           renderItem={renderTag}
-          keyExtractor={index => `tag-${index}`}
+          keyExtractor={index => index}
         />
       </View>
     )

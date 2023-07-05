@@ -15,6 +15,7 @@
     "@react-navigation/stack": "^6.3.16",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "react-native-flexbox-grid": "^0.3.2",
     "react-native-gesture-handler": "^2.10.0",
     "react-native-image-picker": "^5.3.1",
     "react-native-localize": "^3.0.0",

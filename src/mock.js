@@ -1,3 +1,4 @@
+// Tags must be qtd pair
 export const tags = [
   {id: 1, color: '#FF0000', name: 'Mental Health', photo: ''},
   {id: 2, color: '#00FF00', name: 'Anxiety', photo: ''},
@@ -18,7 +19,6 @@ export const tags = [
   {id: 15, color: '#D3D3D3', name: 'Diet', photo: ''},
   {id: 16, color: '#D3D3D3', name: 'Jokes', photo: ''},
   {id: 17, color: '#FF0000', name: 'Motivation', photo: ''},
-  {id: 18, color: '#EE82EE', name: 'Other', photo: ''},
 ];
 
 export const posts = [

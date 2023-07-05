@@ -22,7 +22,6 @@
 npm install @react-navigation/native
 npm install @react-navigation/bottom-tabs
 
-npm install react-native-vector-icons
-
-
 npm install react-native-video
+npm install react-native-flexbox-grid
+
