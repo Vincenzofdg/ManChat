@@ -489,6 +489,7 @@
 				DEVELOPMENT_TEAM = 8C8U85AC8R;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = manchat/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ManChat;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -516,6 +517,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8C8U85AC8R;
 				INFOPLIST_FILE = manchat/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ManChat;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
