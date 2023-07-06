@@ -69,27 +69,41 @@ export default function HiddenMenu({isOn, hide, icon}) {
   }
 
   return (
-    <View style={[styles.menu, { display: isOn ? 'flex' : 'none' } ]}>
-      <TouchableOpacity style={styles.icon} onPress={menuClose}>
-        <Image source={icon} style={styles.icon.size} />
-      </TouchableOpacity>
-      { tagList(user.tags, true) }
-      { tagList(otherTags, false) }
-      <View style={styles.line} />
-      <View style={styles.status} >
-        <StatusBtn text={str.newMessager} type={'message'}/>
-        <StatusBtn text={str.newReplies} type={'reply'}/>
+    <View style={[styles.container, { display: isOn ? 'flex' : 'none' } ]}>
+      <View style={styles.menu}>
+        <TouchableOpacity style={styles.icon} onPress={menuClose}>
+          <Image source={icon} style={styles.icon.size} />
+        </TouchableOpacity>
+        { tagList(user.tags, true) }
+        { tagList(otherTags, false) }
+        <View style={styles.line} />
+        <View style={styles.status} >
+          <StatusBtn text={str.newMessager} type={'message'}/>
+          <StatusBtn text={str.newReplies} type={'reply'}/>
+        </View>
       </View>
+
+      <TouchableOpacity style={styles.rest} onPress={menuClose}>
+
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  menu: {
-    backgroundColor: "rgba(07, 25, 51, 0.8)",
+  container: {
     position: 'absolute',
     top: 0,
     left: 0,
+    flexDirection: 'row',
+  },
+  rest: {
+    flexGrow: 1,
+    height,
+  },
+  
+  menu: {
+    backgroundColor: "rgba(07, 25, 51, 0.8)",
     height,
     width: width / 1.5,
   },
