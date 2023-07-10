@@ -6,7 +6,7 @@ export default localized = {
     otherTopics: 'Explore Other Topics',
     newMessager: 'New Messages',
     newReplies: 'New Replies',
-    back: 'return',
+    back: 'Return',
     inputSearch: 'Search for answers',
     timeStatus: (who, when) => `${who} posted ${when} hours ago`,
   },
@@ -17,7 +17,8 @@ export default localized = {
     otherTopics: 'Explore Outros Topicos',
     newMessager: 'Novas Mensagens',
     newReplies: 'Novas Respostas',
-    back: 'voltar',
+    back: 'Voltar',
     inputSearch: 'Procurar resposta',
+    timeStatus: (who, when) => `${who} postou a ${when} horas atrás`,
   },
 };

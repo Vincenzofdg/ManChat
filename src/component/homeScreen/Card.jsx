@@ -28,7 +28,7 @@ function Card({data, idDisabled}) {
     setTagColor(getColor)
   }, [tags]);
 
-  const handlePress = () => navigate('Post', data);
+  const handlePress = () => navigate('Post', {...data, tagColor});
 
   return (
     <TouchableOpacity disabled={!idDisabled} style={styles.card} onPress={handlePress}>

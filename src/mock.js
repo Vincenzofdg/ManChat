@@ -21,6 +21,99 @@ export const tags = [
   {id: 17, color: '#FF0000', name: 'Motivation', photo: ''},
 ];
 
+export const comments = [
+  {
+    id: 1,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 2,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 3,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 4,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 5,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 6,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 7,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 8,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 9,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  },
+  {
+    id: 10,
+    comments: [
+      {auth: 'Paulo', likes: 0, content: 'Comment 01'},
+      {auth: 'Ricardo', likes: 0, content: 'Comment 02'},
+      {auth: 'Ed', likes: 0, content: 'Comment 03'},
+      {auth: 'Justin', likes: 0, content: 'Comment 04'},
+    ]
+  }
+]
+
 export const posts = [
   {
     id: 1,
@@ -138,6 +231,7 @@ export const lives = [
 ];
 
 export const newUser = {
+  // id: ''
   photo: '',
   fullName: '',
   displayName: '',
@@ -147,10 +241,13 @@ export const newUser = {
 };
 
 export const user = {
+  id: 0,
   photo: 'https://avatars.githubusercontent.com/u/79121466?v=4',
   fullName: 'Vincenzo Fedzuirek Di Giacomo',
   displayName: 'vincenzofdg',
   age: '27',
   bio: 'The guy who are developing this project',
   tags: [tags[1].name, tags[2].name, tags[3].name, tags[4].name, tags[5].name],
+  postLiked: [],
+  commentLiked: [],
 };

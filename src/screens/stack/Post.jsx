@@ -2,35 +2,52 @@ import React, { useContext, useState, useEffect } from 'react';
 import Context from '../../context/Context'
 import { 
   StyleSheet, 
-  SafeAreaView, 
   Text, 
   View, 
   ScrollView, 
-  TextInput, 
-  Dimensions, 
   TouchableOpacity,
-  Image,
-  KeyboardAvoidingView } from 'react-native';
+  Image } from 'react-native';
 
 import localized from '../../localized/App'
-
 import Imgs from '../../localized/Images';
 
-const { height , width } = Dimensions.get('window');
+import { posts as data } from '../../mock';
 
 function Post({route: {params}, navigation}) {
-  const { info } = useContext(Context);
-  const [comment, SetComment] = useState('')
-  const [comments, SetComments] = useState([])
+  const { info, user, setUser } = useContext(Context);
+  const [userLiked, setUserLiked] = useState(false);
   const str = localized[info.language] || localized['en'];
 
-  useEffect(() => {}, [comments])
-
+  useEffect(() => {
+    !!user.postLiked.includes(params.id) ? setUserLiked(true) : setUserLiked(false);
+  }, [user]);
+    
   const goBack = () => navigation.goBack();
-  const handleChange = (text) => SetComment(text);
-  const handlePress = () => {
-    comments.push(comment)
-    SetComment('');
+
+  const handleLikeThePost = () => {    
+    const newLikesCount = Number(params.likes) + (!!userLiked ? -1 : +1);
+    params.likes = newLikesCount;
+    
+    setUser(prev => {
+      const { postLiked } = prev;
+      if (!userLiked) {
+        postLiked.push(params.id);
+        return ({ ...prev, postLiked })
+      }
+      else {
+        const removed = postLiked.filter(id => id !== params.id)
+        return ({ ...prev, postLiked: removed })
+      }
+    })
+    
+    // update database
+    const postID = params.id;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === postID) {
+        data[i].likes = newLikesCount;
+        break; 
+      }
+    }
   }
 
   return (
@@ -40,64 +57,36 @@ function Post({route: {params}, navigation}) {
           <View style={[styles.arrow.bar, {transform: [{rotate: '-30deg'}]}]}/>
           <View style={[styles.arrow.bar, {transform: [{rotate: '30deg'}]}]}/>
         </View>
-        <Text style={{color: 'white'}}>Return</Text>
+        <Text style={{color: 'white'}}>{str.back}</Text>
       </TouchableOpacity>
+
 
       <View style={styles.post}>
         <View style={styles.postUp}>
-          <TouchableOpacity style={{marginRight: 10}}>
-            <Image style={styles.profile} source={Imgs.profile}/>
+          <TouchableOpacity style={{marginRight: 5}}>
+            <Image style={styles.profile} source={{uri: user.photo || Imgs.profile}}/>
           </TouchableOpacity>
-          
-          <Text style={{fontSize: 12, flexGrow: 1}}>{params.auth} posted {params.posted} hours ago</Text>
-        
-          <Text style={[styles.tag, {backgroundColor: 'pink',}]}>{params.tag}</Text>
+          <Text style={{fontSize: 10, flexGrow: 1}}>{str.timeStatus(params.auth, params.posted)}</Text>
+          <Text style={[styles.tag, {backgroundColor: params.tagColor,}]}>{params.tag}</Text>
         </View>
+
+
+        <View style={styles.postMiddle}>
+        <Text style={styles.postTitle}>{params.title}</Text>
+        <Text style={styles.postContent}>{params.content}</Text>
       </View>
 
 
+      <View style={styles.postDown}>
+        <TouchableOpacity style={styles.like} onPress={handleLikeThePost}>
+          <Image source={Imgs.like} style={[styles.like.icon, { tintColor: userLiked ? 'blue' : 'gray'}]} />
+          <Text style={[ styles.like.qtd, {color: userLiked ? 'blue' : 'gray'} ]}>{params.likes}</Text>
+        </TouchableOpacity>
+      </View>
 
+
+      </View>
     </ScrollView>
-    // <KeyboardAvoidingView behavior='padding'>
-    //   <ArrowLeft action={goBack} text={str.back}/>
-    //   <View style={styles.upperContainer}>
-    //     <Text style={styles.title}>{params.title}</Text>
-    //     <View style={styles.tag}>
-    //       <Text style={{color: 'white', textAlign: 'center'}}>{params.tag}</Text>
-    //     </View>
-    //   </View>
-    //   <View style={styles.content}>
-    //     <Text style={styles.contentText}>{params.content}</Text>
-    //   </View>
-    //   <View style={styles.comments}>
-        
-    //     <Text style={styles.commentLabel}>Comments:</Text>
-    //     <View>
-    //       {
-    //         comments.map(comment => {
-    //           return (
-    //             <Text key={comment} style={styles.commentLabel}>{comment}</Text>
-    //           )
-    //         })
-    //       }
-    //     </View>
-
-
-    //     <View style={styles.commentContainer}>
-    //       <TextInput 
-    //         style={styles.commentInput} 
-    //         placeholderTextColor="white" 
-    //         placeholder='reply...'
-    //         value={comment}
-    //         onChangeText={handleChange}
-    //       />
-          
-    //         <TouchableOpacity onPress={handlePress} style={styles.btnPost}>
-    //           <Text style={{color: 'white'}}>Send</Text>
-    //         </TouchableOpacity>
-    //     </View>
-    //   </View>
-    // </KeyboardAvoidingView>
   )
 }
 
@@ -138,20 +127,45 @@ const styles = StyleSheet.create({
   profile: {
     width: 30,
     height: 30,
-    tintColor: 'black',
+    borderRadius: 50,
   },
   tag: {
-    minWidth: 60,
     textAlign: 'center',
     borderRadius: 10,
     overflow: 'hidden',
+    padding: 5
   },
   postMiddle: {
-    
+    padding: 10
+  },
+  postTitle: {
+    fontWeight: 700,
+    padding: 15,
+    textAlign: 'center'
+  },
+  postContent: {
+    lineHeight: 20,
   },
   postDown: {
-    
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
+  like: {
+    width: '20%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 5,
+    icon: {
+      width: 18,
+      height: 18,
+    },
+    qtd: {
+      color: 'gray',
+      fontSize: 12,
+      marginLeft: 5,
+    }
+  }
 })
 
 export default Post;
