@@ -39,12 +39,13 @@ const ToHomeScreen = () => {
     tabBarStyle: { 
       backgroundColor: 'rgb(07,25,51)',
       borderTopWidth: 0,
-      height: 38
+      // height: 38,
+      padding: 3
     },
   };
 
   const icon = (name, focused) => {
-    const css = { width: 30, height: 30, tintColor: !!focused ? 'white' : 'gray'};
+    const css = {width: 30, height: 30, tintColor: !!focused ? 'white' : 'gray'};
     let imagePath;
     switch (name) {
       case 'home':

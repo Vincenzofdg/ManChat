@@ -71,21 +71,21 @@ export default function HiddenMenu({isOn, hide, icon}) {
   return (
     <View style={[styles.container, { display: isOn ? 'flex' : 'none' } ]}>
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.icon} onPress={menuClose}>
-          <Image source={icon} style={styles.icon.size} />
-        </TouchableOpacity>
-        { tagList(user.tags, true) }
-        { tagList(otherTags, false) }
+
+        <View style={{flexGrow: 1, flex: 1, justifyContent: 'space-around'}}>
+          { tagList(user.tags, true) }
+          { tagList(otherTags, false) }
+        </View>
+        
         <View style={styles.line} />
+
         <View style={styles.status} >
           <StatusBtn text={str.newMessager} type={'message'}/>
           <StatusBtn text={str.newReplies} type={'reply'}/>
         </View>
       </View>
 
-      <TouchableOpacity style={styles.rest} onPress={menuClose}>
-
-      </TouchableOpacity>
+      <TouchableOpacity style={styles.rest} onPress={menuClose} />
     </View>
   );
 }
@@ -104,22 +104,20 @@ const styles = StyleSheet.create({
   
   menu: {
     backgroundColor: "rgba(07, 25, 51, 0.8)",
+
+    paddingTop: 50,
+    paddingBottom: 100,
     height,
     width: width / 1.5,
   },
-  icon: {
-    marginTop:  Platform.OS === 'ios'? 40 : 20,
-    marginLeft: 20,
-    size: {width: 30, height: 30}
-  },
   topicsTitle: {
-    height: width / 2.1,
-    marginTop: 20,
+    height: '45%',
+    marginTop: 10,
   },
   topics: {
     marginLeft: 30,
     marginBottom: 5,
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: 800
   },
   line: {
@@ -132,7 +130,6 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   status: {
-    // padding: 20,
     marginLeft: 25
   }
 });
