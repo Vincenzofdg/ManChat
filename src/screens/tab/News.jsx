@@ -10,6 +10,7 @@ import HighLightCard from '../../component/newsScreen/HighLightCard';
 function News() {
   const { user } = useContext(Context);
   const [tags, setTags] = useState({user: [], other: []});
+  // const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const notSelected = allTags.reduce((acc, cur) => {
@@ -67,6 +68,15 @@ function News() {
                 renderItem={renderHighLightCard}
                 pagingEnabled={true}
                 keyExtractor={({key}) => `MainCard-${key}`}
+
+                // onEndReached={() => {
+                //   const nextPage = currentPage + 1;
+                //   const update = [...tags.user.slice(0, nextPage * 3)];
+                //   console.log('ATUALIZA')
+                //   setCurrentPage(nextPage);
+                //   setTags(prev => ({...prev, user: update}));
+                // }}
+                // onEndReachedThreshold={0.5}
               />
               <Text style={styles.subTitle}>Find the Help you need!</Text>
             </View>

@@ -10,12 +10,17 @@ import { tags } from '../../mock';
 const { width } = Dimensions.get('window');
 
 function Card({data, idDisabled}) {
-  const {info} = useContext(Context);
-  const [tagColor, setTagColor] = useState(''); 
+  const {info, user} = useContext(Context);
+  const [tagColor, setTagColor] = useState('');
+  const [hasBeenLiked, setHasBeenLiked] = useState(false); 
   const { navigate } = useNavigation();
   const str = localized[info.language] || localized['en'];
   
   useEffect(() => {
+    // check if post has been liked
+    const userLikedPost = user.postLiked.includes(data.id);
+    userLikedPost ? setHasBeenLiked(true) : setHasBeenLiked(false)
+
     // get tag color
     const getColor = tags.reduce((acc, cur) => {
       if (cur.name === data.tag) {
@@ -24,9 +29,8 @@ function Card({data, idDisabled}) {
       }
       return acc;
     }, '')
-
     setTagColor(getColor)
-  }, [tags]);
+  }, [tags, user]);
 
   const handlePress = () => navigate('Post', {...data, tagColor});
 
@@ -43,8 +47,25 @@ function Card({data, idDisabled}) {
       </View>
 
       <View style={styles.down}>
-        <Image source={Imgs.like} style={styles.down.icon} />
-        <Text style={styles.down.text}>{data.likes}</Text>
+        <Image 
+          source={Imgs.like} 
+          style={[
+            styles.down.icon, 
+            {
+              tintColor: !!hasBeenLiked ? 'blue' : 'gray',
+            }
+          ]}
+        />
+        <Text 
+          style={[
+            styles.down.text,
+            {
+              color: !!hasBeenLiked ? 'blue' : 'gray',
+            }
+          ]}
+        >
+          {data.likes}
+        </Text>
       </View>
 
     </TouchableOpacity>
@@ -97,11 +118,9 @@ const styles = StyleSheet.create({
       width: 17,
       height: 17,
       marginRight: 6,
-      tintColor: 'gray'
     },
     text: {
       fontSize: 10,
-      color: 'gray'
     }
   }
 })

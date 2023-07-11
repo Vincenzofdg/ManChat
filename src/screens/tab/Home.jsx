@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Context from '../../context/Context';
+import { useNavigation } from '@react-navigation/native';
 import { 
   BackHandler, 
   FlatList, 
@@ -17,10 +18,11 @@ import HiddenMenu from '../../component/homeScreen/HiddenMenu';
 import { posts as data } from '../../mock';
 
 function Home() {
-  const { user: {photo}, info } = useContext(Context)
-  const [hideMenu, setHideMenu] = useState(true)
-  const [postToSearch, setPostToSearch] = useState('')
-  const [posts, setPosts] = useState('')
+  const { user, info } = useContext(Context);
+  const [hideMenu, setHideMenu] = useState(true);
+  const [postToSearch, setPostToSearch] = useState('');
+  const [posts, setPosts] = useState('');
+  const { navigate } = useNavigation();
 
   const str = localized[info.language] || localized['en'];
 
@@ -42,6 +44,8 @@ function Home() {
     setPosts(filteredPosts)
   }
 
+  const userProfileNavigate = () => navigate('Profile', user)
+
   const renderCard = ({item}) => <Card idDisabled={hideMenu} data={item} />;
 
   return (
@@ -52,8 +56,8 @@ function Home() {
             <Image source={Imgs.menu} style={[styles.nav.menu, { opacity: hideMenu ? 1 : 0.05}]} />
           </TouchableOpacity>
           <Image source={Imgs.app} style={styles.nav.logo} />
-          <TouchableOpacity disabled={hideMenu ? false : true}>
-            <Image source={{uri: photo || Imgs.profile}} style={styles.nav.profile} />
+          <TouchableOpacity disabled={hideMenu ? false : true} onPress={userProfileNavigate}>
+            <Image source={{uri: user.photo || Imgs.profile}} style={styles.nav.profile} />
           </TouchableOpacity>
         </View>
         <View style={styles.searchText}>
