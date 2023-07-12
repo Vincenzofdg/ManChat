@@ -39,5 +39,6 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
     borderRadius: 10,
+    padding: 10
   }
 });

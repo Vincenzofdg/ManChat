@@ -21,7 +21,8 @@
 
 npm install @react-navigation/native
 npm install @react-navigation/bottom-tabs
-
 npm install react-native-video
-npm install react-native-flexbox-grid
+npm install @react-native-picker/picker  
+
+
 

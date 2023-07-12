@@ -120,14 +120,14 @@ export const posts = [
     title: 'Prioritizing Mental Health: Strategies for a Balanced Mind',
     tag: 'Mental Health',
     auth: 'Ricard J.',
-    posted: '10/22/2023',
+    posted: '03/22/2023',
     likes: 1245,
     content:
       "In today's fast-paced world, taking care of our mental health is of utmost importance. As we juggle various responsibilities and navigate through life's challenges, it becomes essential to prioritize our well-being. This post aims to shed light on effective strategies and practices that can promote a healthy state of mind and emotional well-being. There is no shame in seeking professional help for mental health concerns. Mental health professionals, such as therapists or counselors, can provide guidance, support, and specialized treatment when needed.",
   },
   {
     id: 2,
-    title: 'Managing Anxiety: Strategies for a Balanced Mind',
+    title: 'Managing Anxiety: Strategies for a Balanced Mind', ///
     tag: 'Anxiety',
     auth: 'Marlin Jones',
     posted: '09/10/2022',
@@ -197,7 +197,17 @@ export const posts = [
   },
   {
     id: 9,
-    title: '',
+    title: 'Music is Music',
+    tag: 'Music',
+    auth: 'Pedro W.',
+    posted: '04/10/2023',
+    likes: 12395,
+    content:
+      'Music has a way of sparking creativity and fueling the imagination.',
+  },
+  {
+    id: 10,
+    title: 'Powerful Motivator',
     tag: 'Anxiety',
     auth: 'Thiago Jonas',
     posted: '09/12/2022',
@@ -206,14 +216,14 @@ export const posts = [
       'Anxiety can be channeled into a powerful motivator for personal growth.',
   },
   {
-    id: 10,
-    title: '',
-    tag: 'Music',
-    auth: 'Pedro W.',
-    posted: '10/10/2023',
-    likes: 12395,
+    id: 11,
+    title: 'By Me',
+    tag: 'Anxiety',
+    auth: 'Thiago Jonas',
+    posted: '01/01/2023',
+    likes: 124,
     content:
-      'Music has a way of sparking creativity and fueling the imagination.',
+      'Anxiety can be channeled into a powerful motivator for personal growth.',
   },
 ];
 

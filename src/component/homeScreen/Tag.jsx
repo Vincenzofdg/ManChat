@@ -1,4 +1,5 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Context from '../../context/Context';
 import { useTheme } from '@react-navigation/native';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
@@ -6,10 +7,13 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 export default function Tag({name, selected}) {
   const { user: {tags}, setUser } = useContext(Context)
   const { colors: {text} } = useTheme(); 
+  const { navigate } = useNavigation();
 
   const theme = (css) => [styles[css], {color: text}];
 
-  const handleClick = () => {
+  const handleClickOnTagName = () => navigate('SearchByTag', name);
+
+  const addOrRemoveTag = () => {
     if (!!selected) {
       const newTags = tags.filter(tag => tag !== name);
       setUser((prev) => ({ 
@@ -30,8 +34,8 @@ export default function Tag({name, selected}) {
       {/* DEPOIS SUBISTIBUIR PELO ICON */}
       <View style={styles.icon}/>
       <View style={styles.tagName}>
-        <Text style={theme('tagText')}>{name}</Text>
-        <TouchableOpacity style={styles.mask} onPress={handleClick}>
+        <Text style={theme('tagText')} onPress={handleClickOnTagName}>{name}</Text>
+        <TouchableOpacity style={styles.mask} onPress={addOrRemoveTag}>
           <View style={styles.selected} />
           { !selected && <View style={styles.notSelected} /> }
         </TouchableOpacity>

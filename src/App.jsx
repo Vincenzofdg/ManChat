@@ -15,6 +15,7 @@ import TagsScreen from './screens/stack/Tags';
 import PostScreen from './screens/stack/Post';
 import LiveScreen from './screens/stack/Live';
 import ProfileScreen from './screens/stack/Profile';
+import SearchByTagScreen from './screens/stack/SearchByTag';
 // Tab Navigation
 import HomeScreen from './screens/tab/Home'
 import LivesScreen from './screens/tab/Lives'
@@ -101,6 +102,7 @@ export default function App() {
           <Stack.Screen name="Post" component={PostScreen} />
           <Stack.Screen name="Live" component={LiveScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="SearchByTag" component={SearchByTagScreen} />
           <Stack.Screen name="HomePage" component={ToHomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>

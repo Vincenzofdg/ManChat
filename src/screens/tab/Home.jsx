@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Context from '../../context/Context';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { 
   BackHandler, 
   FlatList, 
@@ -23,6 +23,7 @@ function Home() {
   const [postToSearch, setPostToSearch] = useState('');
   const [posts, setPosts] = useState('');
   const { navigate } = useNavigation();
+  const isFocused = useIsFocused();
 
   const str = localized[info.language] || localized['en'];
 
@@ -30,23 +31,42 @@ function Home() {
     function RemoveBackHandler() {
       BackHandler.addEventListener('hardwareBackPress', () => true);
     }
-    RemoveBackHandler()
+    RemoveBackHandler();
 
-    setPosts(data)
-    setHideMenu(true)
-  }, []);
+    // Reset states
+    if (isFocused) {
+      setHideMenu(true)
+      setPostToSearch('')
+    }
 
-  const toggleMenuClick = () => setHideMenu(!hideMenu);
+    // Sort post by newests
+    const sortedData = [...data].sort((a, b) => {
+      const [monthA, dayA, yearA] = a.posted.split('/');
+      const [monthB, dayB, yearB] = b.posted.split('/');
+      const dateA = new Date(yearA, monthA - 1, dayA);
+      const dateB = new Date(yearB, monthB - 1, dayB)
+      
+      return dateB - dateA;
+    });
 
-  const handleChange = (value) => {
-    const filteredPosts = data.filter(({title}) => (title.toLowerCase()).includes(value.toLowerCase()))
-    setPostToSearch(value);
-    setPosts(filteredPosts)
-  }
-
-  const userProfileNavigate = () => navigate('Profile', user)
+    setPosts(sortedData);
+  }, [data, isFocused]);
 
   const renderCard = ({item}) => <Card idDisabled={hideMenu} data={item} />;
+
+  const toggleMenuClick = () => setHideMenu(!hideMenu);
+  const handleChange = (value) => setPostToSearch(value);
+  const userProfileNavigate = () => navigate('Profile', user);
+
+  const flatListData = (list) => {
+    try {
+      const search = postToSearch.toLowerCase()
+      const filteredPosts = list.filter(({title}) => (title.toLowerCase()).includes(search))
+      return filteredPosts;
+    } catch (error) {
+      return []
+    }
+  };
 
   return (
     <SafeAreaView style={styles.home}>
@@ -75,7 +95,7 @@ function Home() {
 
       <View style={{height: '83%'}}>
         <FlatList
-          data={posts}
+          data={flatListData(posts) || []}
           horizontal={false}
           showsVerticalScrollIndicator={false}
           renderItem={renderCard}

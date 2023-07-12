@@ -6,10 +6,8 @@ import {
   Dimensions, 
   View, 
   Text, 
-  Image, 
   TouchableOpacity, 
-  FlatList,
-  Platform } from 'react-native';
+  FlatList } from 'react-native';
 
 import Tag from './Tag';
 import StatusBtn from './StatusBtn';
@@ -46,7 +44,8 @@ export default function HiddenMenu({isOn, hide, icon}) {
     setUser(prev => ({
       ...prev,
       tags: selectedTags,
-    }))
+    }));
+    // ==>
     hide();
   }
 

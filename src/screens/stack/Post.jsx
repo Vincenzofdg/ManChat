@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Context from '../../context/Context'
 import { 
   StyleSheet, 
@@ -6,24 +7,31 @@ import {
   View, 
   ScrollView, 
   TouchableOpacity,
-  Image } from 'react-native';
+  Image, 
+  SafeAreaView} from 'react-native';
 
 import localized from '../../localized/App'
 import Imgs from '../../localized/Images';
+import Return from '../../component/ReturnArrow'
+
+import getPostedTime from '../../Hooks/getPostedTime';
 
 import { posts as data } from '../../mock';
 
 function Post({route: {params}, navigation}) {
   const { info, user, setUser } = useContext(Context);
   const [userLiked, setUserLiked] = useState(false);
+  const [postTimer, setPostTimer] = useState(0);
   const str = localized[info.language] || localized['en'];
+  const { navigate } = useNavigation();
 
   useEffect(() => {
-    !!user.postLiked.includes(params.id) ? setUserLiked(true) : setUserLiked(false);
-  }, [user]);
-    
-  const goBack = () => navigation.goBack();
+    const howLongItHasBeenPosted = getPostedTime(params.posted);
 
+    !!user.postLiked.includes(params.id) ? setUserLiked(true) : setUserLiked(false);
+    setPostTimer(howLongItHasBeenPosted)
+  }, [user]);
+  
   const handleLikeThePost = () => {    
     const newLikesCount = Number(params.likes) + (!!userLiked ? -1 : +1);
     params.likes = newLikesCount;
@@ -48,71 +56,41 @@ function Post({route: {params}, navigation}) {
         break; 
       }
     }
-  }
+  };
+
+  const handleClickOnTagName = () => navigate('SearchByTag', params.tag);
 
   return (
     <ScrollView>
-      <TouchableOpacity style={styles.goBack} onPress={goBack}>
-        <View style={styles.arrow}>
-          <View style={[styles.arrow.bar, {transform: [{rotate: '-30deg'}]}]}/>
-          <View style={[styles.arrow.bar, {transform: [{rotate: '30deg'}]}]}/>
+      <SafeAreaView>
+        <Return nav={navigation} />
+        <View style={styles.post}>
+          <View style={styles.postUp}>
+            <TouchableOpacity style={{marginRight: 5}}>
+              <Image style={styles.profile} source={{uri: user.photo || Imgs.profile}}/>
+            </TouchableOpacity>
+            <Text style={{fontSize: 10, flexGrow: 1}}>{str.timeStatus(params.auth, postTimer)}</Text>
+            <TouchableOpacity onPress={handleClickOnTagName}>
+              <Text style={[styles.tag, {backgroundColor: params.tagColor,}]}>{params.tag}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.postMiddle}>
+            <Text style={styles.postTitle}>{params.title}</Text>
+            <Text style={styles.postContent}>{params.content}</Text>
+          </View>
+          <View style={styles.postDown}>
+            <TouchableOpacity style={styles.like} onPress={handleLikeThePost}>
+              <Image source={Imgs.like} style={[styles.like.icon, { tintColor: userLiked ? 'blue' : 'gray'}]} />
+              <Text style={[ styles.like.qtd, {color: userLiked ? 'blue' : 'gray'} ]}>{params.likes}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <Text style={{color: 'white'}}>{str.back}</Text>
-      </TouchableOpacity>
-
-
-      <View style={styles.post}>
-        <View style={styles.postUp}>
-          <TouchableOpacity style={{marginRight: 5}}>
-            <Image style={styles.profile} source={{uri: user.photo || Imgs.profile}}/>
-          </TouchableOpacity>
-          <Text style={{fontSize: 10, flexGrow: 1}}>{str.timeStatus(params.auth, params.posted)}</Text>
-          <Text style={[styles.tag, {backgroundColor: params.tagColor,}]}>{params.tag}</Text>
-        </View>
-
-
-        <View style={styles.postMiddle}>
-        <Text style={styles.postTitle}>{params.title}</Text>
-        <Text style={styles.postContent}>{params.content}</Text>
-      </View>
-
-
-      <View style={styles.postDown}>
-        <TouchableOpacity style={styles.like} onPress={handleLikeThePost}>
-          <Image source={Imgs.like} style={[styles.like.icon, { tintColor: userLiked ? 'blue' : 'gray'}]} />
-          <Text style={[ styles.like.qtd, {color: userLiked ? 'blue' : 'gray'} ]}>{params.likes}</Text>
-        </TouchableOpacity>
-      </View>
-
-
-      </View>
+      </SafeAreaView>
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  goBack: {
-    marginTop: 50,
-    marginLeft: 10,
-    marginBottom: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    overflow: 'hidden',
-    width: 60,
-    height: 20,
-  },
-  arrow: {
-    justifyContent: 'center',
-    bar: {
-      position: 'absolute',
-      left: -12,
-      backgroundColor: 'white',
-      width: 25,
-      height: 3,
-      borderRadius: 20
-    }
-  },
   post: {
     backgroundColor: 'white',
     padding: 10,

@@ -3,8 +3,8 @@ import Context from '../../context/Context';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, Dimensions, Text, View, Image } from 'react-native';
 
+import getPostedTime from '../../Hooks/getPostedTime';
 import Imgs from '../../localized/Images';
-
 import { tags } from '../../mock';
 
 const { width } = Dimensions.get('window');
@@ -12,6 +12,7 @@ const { width } = Dimensions.get('window');
 function Card({data, idDisabled}) {
   const {info, user} = useContext(Context);
   const [tagColor, setTagColor] = useState('');
+  const [postTimer, setPostTimer] = useState(0);
   const [hasBeenLiked, setHasBeenLiked] = useState(false); 
   const { navigate } = useNavigation();
   const str = localized[info.language] || localized['en'];
@@ -21,6 +22,10 @@ function Card({data, idDisabled}) {
     const userLikedPost = user.postLiked.includes(data.id);
     userLikedPost ? setHasBeenLiked(true) : setHasBeenLiked(false)
 
+    // How long has been posted
+    const howLongItHasBeenPosted = getPostedTime(data.posted);
+    setPostTimer(howLongItHasBeenPosted)
+  
     // get tag color
     const getColor = tags.reduce((acc, cur) => {
       if (cur.name === data.tag) {
@@ -37,7 +42,7 @@ function Card({data, idDisabled}) {
   return (
     <TouchableOpacity disabled={!idDisabled} style={styles.card} onPress={handlePress}>
       <View style={styles.up}>
-        <Text style={styles.up.text}>{str.timeStatus(data.auth, data.posted)}</Text>
+        <Text style={styles.up.text}>{str.timeStatus(data.auth, postTimer)}</Text>
         <Text style={[styles.up.text, styles.up.tag, {backgroundColor: !!tagColor && tagColor}]}>{data.tag}</Text>
       </View>
 
@@ -76,6 +81,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#F5FEFD', 
     width: width - 30,
+    minHeight: 100,
     maxHeight: 220,
     borderRadius: 20,
     marginBottom: 15,

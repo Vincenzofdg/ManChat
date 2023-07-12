@@ -72,7 +72,6 @@ function News() {
                 // onEndReached={() => {
                 //   const nextPage = currentPage + 1;
                 //   const update = [...tags.user.slice(0, nextPage * 3)];
-                //   console.log('ATUALIZA')
                 //   setCurrentPage(nextPage);
                 //   setTags(prev => ({...prev, user: update}));
                 // }}
