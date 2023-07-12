@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FEFD', 
     width: width - 30,
     minHeight: 100,
-    maxHeight: 220,
     borderRadius: 20,
     marginBottom: 15,
     padding: 12,
@@ -91,6 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     text: {
+      color: 'black',
       fontSize: 11
     },
     tag: {
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   },
   middle: {
     title: {
+      color: 'black',
       fontSize: 13,
       fontWeight: 700,
       textAlign: 'center',
@@ -110,6 +111,7 @@ const styles = StyleSheet.create({
       marginBottom: 10
     },
     content: {
+      color: 'black',
       fontSize: 12,
       marginBottom: 8,
       maxHeight: 100,

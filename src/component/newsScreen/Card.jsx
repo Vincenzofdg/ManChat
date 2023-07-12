@@ -5,7 +5,9 @@ export default function Card({data: {content}}) {
   return (
     <View style={styles.container}>
       {
-        content.map((e, i) => (
+        content.map((e, i) => {
+        if (!e) return 
+        return (
           <TouchableOpacity key={e + '-' + i} style={styles.card}>
             <View style={styles.photo} />
             <View style={styles.cardInfo}>
@@ -13,7 +15,7 @@ export default function Card({data: {content}}) {
               <Text style={styles.subTitle}>subtitle subtitle ubtitle subtitle</Text>
             </View>
           </TouchableOpacity>
-        ))
+        )})
       }
     </View>
   );

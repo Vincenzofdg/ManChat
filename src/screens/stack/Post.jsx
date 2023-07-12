@@ -29,7 +29,7 @@ function Post({route: {params}, navigation}) {
     const howLongItHasBeenPosted = getPostedTime(params.posted);
 
     !!user.postLiked.includes(params.id) ? setUserLiked(true) : setUserLiked(false);
-    setPostTimer(howLongItHasBeenPosted)
+    setPostTimer(howLongItHasBeenPosted);
   }, [user]);
   
   const handleLikeThePost = () => {    
@@ -69,7 +69,7 @@ function Post({route: {params}, navigation}) {
             <TouchableOpacity style={{marginRight: 5}}>
               <Image style={styles.profile} source={{uri: user.photo || Imgs.profile}}/>
             </TouchableOpacity>
-            <Text style={{fontSize: 10, flexGrow: 1}}>{str.timeStatus(params.auth, postTimer)}</Text>
+            <Text style={{fontSize: 10, flexGrow: 1, color: 'black'}}>{str.timeStatus(params.auth, postTimer)}</Text>
             <TouchableOpacity onPress={handleClickOnTagName}>
               <Text style={[styles.tag, {backgroundColor: params.tagColor,}]}>{params.tag}</Text>
             </TouchableOpacity>
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   tag: {
+    color: 'black',
     textAlign: 'center',
     borderRadius: 10,
     overflow: 'hidden',
@@ -117,11 +118,13 @@ const styles = StyleSheet.create({
     padding: 10
   },
   postTitle: {
+    color: 'black',
     fontWeight: 700,
     padding: 15,
     textAlign: 'center'
   },
   postContent: {
+    color: 'black',
     lineHeight: 20,
   },
   postDown: {

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: Platform.OS === 'ios'? 40 : 20
+    marginTop: Platform.OS === 'ios'? 40 : 50
   },
   logo: {
     width: 150,

@@ -91,8 +91,6 @@ function Home() {
           />
         </View>
       </View>
-
-
       <View style={{height: '83%'}}>
         <FlatList
           data={flatListData(posts) || []}
