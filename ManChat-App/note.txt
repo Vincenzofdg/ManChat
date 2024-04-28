@@ -1,0 +1,10 @@
+npm install react-native-localize
+
+npm install react-native-image-picker
+
+02183C == cor principal
+
+475571 == cor secundaria
+
+funcao RemoveBackHandler no arquivo profile desativa botao de voltar
+futuramente reativa-lo

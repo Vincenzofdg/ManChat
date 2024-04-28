@@ -1,0 +1,1 @@
+module.exports.cors = require('./cors.tool');
